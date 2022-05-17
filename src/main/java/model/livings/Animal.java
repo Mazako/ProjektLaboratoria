@@ -6,9 +6,9 @@ public abstract class Animal implements Movable, Putable {
     private double hunger;
     private int speed;
 
+
     public Animal(double health, double hunger, int speed) {
         this.health = health;
-        this.hunger = hunger;
         this.speed = speed;
     }
 
@@ -29,11 +29,4 @@ public abstract class Animal implements Movable, Putable {
     }
 
 
-    public double getHunger() {
-        return hunger;
-    }
-
-    public void setHunger(double hunger) {
-        this.hunger = hunger;
-    }
 }
