@@ -4,7 +4,7 @@ public abstract class Herbivore extends Animal {
 
     private Plant target;
 
-    public Herbivore(int x, int y, double health, double hunger, int speed) {
+    public Herbivore(int x, int y, int health, int hunger, int speed) {
         super(x, y, health, hunger, speed);
     }
 

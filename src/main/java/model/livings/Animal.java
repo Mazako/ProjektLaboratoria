@@ -6,12 +6,12 @@ public abstract class Animal implements Movable, Putable {
 
     private int x;
     private int y;
-    private double health;
-    private double hunger;
+    private int health;
+    private int hunger;
     private int speed;
 
 
-    public Animal(int x, int y, double health, double hunger, int speed) {
+    public Animal(int x, int y, int health, int hunger, int speed) {
         this.x = x;
         this.y = y;
         this.health = health;
@@ -19,11 +19,11 @@ public abstract class Animal implements Movable, Putable {
         this.speed = speed;
     }
 
-    public double getHealth() {
+    public int getHealth() {
         return health;
     }
 
-    public void setHealth(double health) {
+    public void setHealth(int health) {
         this.health = health;
     }
 
@@ -35,11 +35,11 @@ public abstract class Animal implements Movable, Putable {
         this.speed = speed;
     }
 
-    public double getHunger() {
+    public int getHunger() {
         return hunger;
     }
 
-    public void setHunger(double hunger) {
+    public void setHunger(int hunger) {
         this.hunger = hunger;
     }
 

@@ -1,19 +1,19 @@
 package model.livings;
 
 public abstract class Carnivore extends Animal {
-    private double attackValue;
+    private int attackValue;
     private Animal target;
 
-    public Carnivore(int x, int y, double health, double hunger, int speed, double attackValue) {
+    public Carnivore(int x, int y, int health, int hunger, int speed, int attackValue) {
         super(x, y, health, hunger, speed);
         this.attackValue = attackValue;
     }
 
-    public double getAttackValue() {
+    public int getAttackValue() {
         return attackValue;
     }
 
-    public void setAttackValue(double attackValue) {
+    public void setAttackValue(int attackValue) {
         this.attackValue = attackValue;
     }
 
