@@ -2,37 +2,36 @@ package model.livings;
 
 public class Plant implements Putable {
 
-    public double healValue;
-    public double hungerValue;
+    private int x;
+    private int y;
+    private double healValue;
+    private double hungerValue;
 
-    public Plant(double healValue, double hungerValue) {
+    public Plant(int x, int y, double healValue, double hungerValue) {
+        this.x = x;
+        this.y = y;
         this.healValue = healValue;
         this.hungerValue = hungerValue;
     }
 
-    public double getHealValue() {
-        return healValue;
-    }
-
-    public void setHealValue(double healValue) {
-        this.healValue = healValue;
-    }
-
-    public double getHungerValue() {
-        return hungerValue;
-    }
-
-    public void setHungerValue(double hungerValue) {
-        this.hungerValue = hungerValue;
-    }
 
     @Override
     public int getX() {
-        return 0;
+        return x;
     }
 
     @Override
     public int getY() {
-        return 0;
+        return y;
+    }
+
+    @Override
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    @Override
+    public void setY(int y) {
+        this.y = y;
     }
 }

@@ -1,8 +1,9 @@
 package model.livings;
 
 public class Snake extends  Carnivore{
-    public Snake(double health, double hunger, int speed, double attackValue) {
-        super(health, hunger, speed, attackValue);
+
+    public Snake(int x, int y, double health, double hunger, int speed, double attackValue) {
+        super(x, y, health, hunger, speed, attackValue);
     }
 
     @Override
@@ -10,18 +11,5 @@ public class Snake extends  Carnivore{
 
     }
 
-    @Override
-    public void move() {
 
-    }
-
-    @Override
-    public int getX() {
-        return 0;
-    }
-
-    @Override
-    public int getY() {
-        return 0;
-    }
 }

@@ -4,8 +4,8 @@ public abstract class Carnivore extends Animal {
     private double attackValue;
     private Animal target;
 
-    public Carnivore(double health, double hunger, int speed, double attackValue) {
-        super(health, hunger, speed);
+    public Carnivore(int x, int y, double health, double hunger, int speed, double attackValue) {
+        super(x, y, health, hunger, speed);
         this.attackValue = attackValue;
     }
 
