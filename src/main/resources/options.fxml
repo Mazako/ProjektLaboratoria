@@ -38,7 +38,7 @@
                         <HBox layoutX="10.0" layoutY="53.0" prefHeight="43.0" prefWidth="218.0">
                            <children>
                               <Label prefHeight="24.0" prefWidth="68.0" text="Szybkość" />
-                              <TextField fx:id="lionSpeedValue" text="2" />
+                              <TextField fx:id="lionSpeedValue" text="5" />
                            </children>
                            <padding>
                               <Insets left="5.0" right="10.0" top="5.0" />
@@ -91,7 +91,7 @@
                         <HBox layoutX="10.0" layoutY="53.0" prefHeight="43.0" prefWidth="218.0">
                            <children>
                               <Label prefHeight="24.0" prefWidth="68.0" text="Szybkość" />
-                              <TextField fx:id="snakeSpeedValue" text="3" />
+                              <TextField fx:id="snakeSpeedValue" text="5" />
                            </children>
                            <padding>
                               <Insets left="5.0" right="10.0" top="5.0" />
@@ -144,7 +144,7 @@
                         <HBox layoutX="10.0" layoutY="53.0" prefHeight="43.0" prefWidth="218.0">
                            <children>
                               <Label prefHeight="24.0" prefWidth="68.0" text="Szybkość" />
-                              <TextField fx:id="giraffeSpeedValue" text="2" />
+                              <TextField fx:id="giraffeSpeedValue" text="5" />
                            </children>
                            <padding>
                               <Insets left="5.0" right="10.0" top="5.0" />
@@ -188,7 +188,7 @@
                         <HBox layoutX="10.0" layoutY="53.0" prefHeight="43.0" prefWidth="218.0">
                            <children>
                               <Label prefHeight="24.0" prefWidth="68.0" text="Szybkość" />
-                              <TextField fx:id="zebraSpeedValue" text="3" />
+                              <TextField fx:id="zebraSpeedValue" text="5" />
                            </children>
                            <padding>
                               <Insets left="5.0" right="10.0" top="5.0" />

@@ -12,8 +12,8 @@ public class Safari {
 
     private static Random random = new Random();
 
-    public static int MAX_WIDTH = 100;
-    public static int MAX_HEIGHT = 100;
+    public static int MAX_WIDTH = 600;
+    public static int MAX_HEIGHT = 600;
     private ArrayList<Putable> objects;
 
     public Safari(Initializator initializator) {

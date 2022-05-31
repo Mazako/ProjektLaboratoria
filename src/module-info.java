@@ -2,8 +2,7 @@ module ProjektLaboratoria {
     requires javafx.fxml;
     requires javafx.graphics;
     requires javafx.controls;
-
-    exports view;
+    requires javafx.media;
 
     opens controller to javafx.fxml;
 }
