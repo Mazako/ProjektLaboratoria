@@ -24,6 +24,16 @@ public class Safari {
         initializeSnakes(objects, initializator);
         initializeGiraffes(objects, initializator);
         initializePlants(objects, initializator);
+        setRandomDirections();
+    }
+
+    private void setRandomDirections() {
+        for (Putable object : objects) {
+            if (object instanceof Movable) {
+                ((Movable) object).setUpDownDirection(UpDownDirection.fromInt(random.nextInt(2)));
+                ((Movable) object).setLeftRightDirection(LeftRightDirection.fromInt(random.nextInt(2)));
+            }
+        }
     }
 
     private void initializePlants(ArrayList<Putable> objects, Initializator initializator) {

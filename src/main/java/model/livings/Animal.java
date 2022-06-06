@@ -2,13 +2,23 @@ package model.livings;
 
 import model.board.Safari;
 
+import java.util.Random;
+
 public abstract class Animal implements Movable, Putable {
+
+    private static Random random = new Random();
 
     private int x;
     private int y;
     private int health;
     private int hunger;
     private int speed;
+
+    private LeftRightDirection leftRightDirection;
+
+    private UpDownDirection upDownDirection;
+
+
 
 
     public Animal(int x, int y, int health, int hunger, int speed) {
@@ -41,6 +51,27 @@ public abstract class Animal implements Movable, Putable {
 
     public void setHunger(int hunger) {
         this.hunger = hunger;
+    }
+
+
+    @Override
+    public LeftRightDirection getLeftRightDirection() {
+        return leftRightDirection;
+    }
+
+    @Override
+    public void setLeftRightDirection(LeftRightDirection leftRightDirection) {
+        this.leftRightDirection = leftRightDirection;
+    }
+
+    @Override
+    public UpDownDirection getUpDownDirection() {
+        return upDownDirection;
+    }
+
+    @Override
+    public void setUpDownDirection(UpDownDirection upDownDirection) {
+        this.upDownDirection = upDownDirection;
     }
 
     @Override
@@ -93,5 +124,47 @@ public abstract class Animal implements Movable, Putable {
     @Override
     public String toString() {
         return getX() + " " + getY();
+    }
+
+    @Override
+    public void randomMove() {
+        XRandomMove();
+        YRandomMove();
+    }
+
+    private void YRandomMove() {
+        switch (upDownDirection) {
+            case UP -> {
+                int newPosition = getY() + random.nextInt(speed) + 1;
+                setY(Math.min(newPosition,Safari.MAX_HEIGHT));
+                if (getY() == Safari.MAX_HEIGHT)
+                    setUpDownDirection(UpDownDirection.DOWN);
+            }
+
+            case DOWN -> {
+                int newPosition = getY() - (random.nextInt(speed) + 1);
+                setY(Math.max(newPosition,0));
+                if (getY() == 0)
+                    setUpDownDirection(UpDownDirection.UP);
+
+            }
+        }
+    }
+
+    private void XRandomMove() {
+        switch (leftRightDirection) {
+            case LEFT -> {
+                int newPosition = getX() - (random.nextInt(speed) + 1);
+                setX(Math.max(newPosition,0));
+                if (getX() == 0)
+                    setLeftRightDirection(LeftRightDirection.RIGHT);
+            }
+            case RIGHT -> {
+                int newPosition = getX() + (random.nextInt(speed) + 1);
+                setX(Math.min(newPosition,Safari.MAX_WIDTH));
+                if (getX() == Safari.MAX_WIDTH)
+                    setLeftRightDirection(LeftRightDirection.LEFT);
+            }
+        }
     }
 }

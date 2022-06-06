@@ -22,8 +22,7 @@ import java.util.Random;
 
 public class simulationWindowController {
 
-    public static int RECT_WIDTH = 5;
-    public static int RECT_HEIGHT = 5;
+    public static int RADIUS = 25;
 
 
     @FXML
@@ -48,7 +47,7 @@ public class simulationWindowController {
     public void initialize() {
         GraphicsContext gc = boardCanvas.getGraphicsContext2D();
         Safari safari = new Safari(initializator);
-        Timeline animation = new Timeline(new KeyFrame(Duration.millis(100), event -> {
+        Timeline animation = new Timeline(new KeyFrame(Duration.millis(75), event -> {
             testloop(safari, gc);
             stepLabel.setText(Integer.toString(Integer.parseInt(stepLabel.getText()) +  1));
         }));
@@ -65,7 +64,7 @@ public class simulationWindowController {
             while(iterator.hasNext()) {
                 Putable p = iterator.next();
                 if (p instanceof Movable) {
-                    ((Movable) p).move(random.nextInt(10)-5, random.nextInt(10)-5); ;
+                    ((Movable) p).randomMove();
                 }
                 draw(p,gc);
             }
@@ -93,7 +92,7 @@ public class simulationWindowController {
             gc.setFill(Color.GREEN);
 
 
-        gc.fillRect(p.getX(),p.getY(),RECT_WIDTH,RECT_HEIGHT);
+        gc.fillOval(p.getX(),p.getY(),RADIUS,RADIUS);
     }
 
 

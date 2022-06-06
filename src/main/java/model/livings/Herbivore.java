@@ -15,4 +15,9 @@ public abstract class Herbivore extends Animal {
     public void setTarget(Plant target) {
         this.target = target;
     }
+
+    @Override
+    public boolean hasTarget() {
+        return target == null;
+    }
 }

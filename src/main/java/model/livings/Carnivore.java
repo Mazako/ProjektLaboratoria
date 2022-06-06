@@ -26,4 +26,9 @@ public abstract class Carnivore extends Animal {
     }
 
     public abstract void attack(Animal animal);
+
+    @Override
+    public boolean hasTarget() {
+        return target == null;
+    }
 }
