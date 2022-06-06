@@ -19,11 +19,11 @@ public class Safari {
     public Safari(Initializator initializator) {
         objects = new ArrayList<>();
 
+        initializePlants(objects, initializator);
         initializeLions(objects, initializator);
         initializeZebras(objects, initializator);
         initializeSnakes(objects, initializator);
         initializeGiraffes(objects, initializator);
-        initializePlants(objects, initializator);
         setRandomDirections();
     }
 
