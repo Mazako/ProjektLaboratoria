@@ -20,9 +20,9 @@ public class Safari {
         objects = new ArrayList<>();
 
         initializePlants(objects, initializator);
-        initializeLions(objects, initializator);
+        //initializeLions(objects, initializator);
         initializeZebras(objects, initializator);
-        initializeSnakes(objects, initializator);
+        //initializeSnakes(objects, initializator);
         initializeGiraffes(objects, initializator);
         setRandomDirections();
     }
@@ -156,5 +156,15 @@ public class Safari {
                 .count();
     }
 
+    public void setTargets() {
+        for (Putable object : objects) {
+            if (object instanceof Movable) {
+                ((Movable) object).findTarget(objects);
+            }
+        }
+    }
 
+    public ArrayList<Putable> getObjects() {
+        return objects;
+    }
 }

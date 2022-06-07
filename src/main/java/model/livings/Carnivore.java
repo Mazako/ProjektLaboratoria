@@ -1,8 +1,12 @@
 package model.livings;
 
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Stream;
+
 public abstract class Carnivore extends Animal {
     private int attackValue;
-    private Animal target;
+    private Herbivore target;
 
     public Carnivore(int x, int y, int health, int hunger, int speed, int attackValue) {
         super(x, y, health, hunger, speed);
@@ -17,11 +21,11 @@ public abstract class Carnivore extends Animal {
         this.attackValue = attackValue;
     }
 
-    public Animal getTarget() {
+    public Herbivore getTarget() {
         return target;
     }
 
-    public void setTarget(Animal target) {
+    public void setTarget(Herbivore target) {
         this.target = target;
     }
 
@@ -30,5 +34,21 @@ public abstract class Carnivore extends Animal {
     @Override
     public boolean hasTarget() {
         return target == null;
+    }
+
+    @Override
+    public void findTarget(List<Putable> list) {
+         list.stream()
+                 .filter(x -> x instanceof Herbivore)
+                 .min(Comparator.comparing(this::distanceBetween))
+                 .ifPresent(x -> this.setTarget((Herbivore) x));
+    }
+
+    @Override
+    public void moveToTarget() {
+        if (!hasTarget())
+            return;
+
+
     }
 }

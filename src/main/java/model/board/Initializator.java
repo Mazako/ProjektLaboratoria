@@ -8,7 +8,7 @@ public class Initializator {
     private int lionSpeed = 2;
     private int lionAttackValue =150;
 
-    //zyrafa
+    //żyrafa
     private int giraffeHealth = 300;
     private int giraffeHunger = 100;
     private int giraffeSpeed = 2;

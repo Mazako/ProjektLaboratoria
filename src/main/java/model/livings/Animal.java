@@ -128,21 +128,22 @@ public abstract class Animal implements Movable, Putable {
 
     @Override
     public void randomMove() {
-        XRandomMove();
-        YRandomMove();
+        int position = random.nextInt(speed) + 1;
+        XRandomMove(position);
+        YRandomMove(position);
     }
 
-    private void YRandomMove() {
+    private void YRandomMove(int position) {
         switch (upDownDirection) {
             case UP -> {
-                int newPosition = getY() + random.nextInt(speed) + 1;
+                int newPosition = getY() + position;
                 setY(Math.min(newPosition,Safari.MAX_HEIGHT));
                 if (getY() == Safari.MAX_HEIGHT)
                     setUpDownDirection(UpDownDirection.DOWN);
             }
 
             case DOWN -> {
-                int newPosition = getY() - (random.nextInt(speed) + 1);
+                int newPosition = getY() - position;
                 setY(Math.max(newPosition,0));
                 if (getY() == 0)
                     setUpDownDirection(UpDownDirection.UP);
@@ -151,20 +152,21 @@ public abstract class Animal implements Movable, Putable {
         }
     }
 
-    private void XRandomMove() {
+    private void XRandomMove(int position) {
         switch (leftRightDirection) {
             case LEFT -> {
-                int newPosition = getX() - (random.nextInt(speed) + 1);
+                int newPosition = getX() - position;
                 setX(Math.max(newPosition,0));
                 if (getX() == 0)
                     setLeftRightDirection(LeftRightDirection.RIGHT);
             }
             case RIGHT -> {
-                int newPosition = getX() + (random.nextInt(speed) + 1);
+                int newPosition = getX() + position;
                 setX(Math.min(newPosition,Safari.MAX_WIDTH));
                 if (getX() == Safari.MAX_WIDTH)
                     setLeftRightDirection(LeftRightDirection.LEFT);
             }
         }
     }
+
 }

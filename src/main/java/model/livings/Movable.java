@@ -1,5 +1,8 @@
 package model.livings;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public interface Movable {
 
      void move(int x, int y);
@@ -13,6 +16,12 @@ public interface Movable {
      void setUpDownDirection(UpDownDirection upDownDirection);
 
      boolean hasTarget();
+
+     void findTarget(List<Putable> list);
+
+     Putable getTarget();
+
+     void moveToTarget();
 
 
 }

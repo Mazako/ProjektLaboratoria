@@ -47,7 +47,8 @@ public class simulationWindowController {
     public void initialize() {
         GraphicsContext gc = boardCanvas.getGraphicsContext2D();
         Safari safari = new Safari(initializator);
-        Timeline animation = new Timeline(new KeyFrame(Duration.millis(75), event -> {
+        safari.setTargets();
+        Timeline animation = new Timeline(new KeyFrame(Duration.millis(100), event -> {
             testloop(safari, gc);
             stepLabel.setText(Integer.toString(Integer.parseInt(stepLabel.getText()) +  1));
         }));
@@ -64,19 +65,34 @@ public class simulationWindowController {
             while(iterator.hasNext()) {
                 Putable p = iterator.next();
                 if (p instanceof Movable) {
-                    ((Movable) p).randomMove();
+                    if (((Movable) p).hasTarget())
+                        ((Movable) p).moveToTarget();
+                    else {
+                        ((Movable) p).randomMove();
+                        ((Movable) p).findTarget(safari.getObjects());
+                    }
+                }
+                if (p instanceof Plant && ((Plant) p).isEaten()) {
+                    iterator.remove();
                 }
                 draw(p,gc);
             }
+            drawDistances(safari,gc);
     }
 
-    public void test2(Lion lion, GraphicsContext gc) {
-        gc.clearRect(0,0,Safari.MAX_WIDTH+100,Safari.MAX_HEIGHT+100);
-        System.out.println("a");
-            gc.fillRect(lion.getX(), lion.getY(), 4,4);
-            ((Movable) lion).move(10,4);
-        System.out.println(lion.getY());
+    private void drawDistances(Safari safari, GraphicsContext gc) {
+        Iterator<Putable> iterator = safari.getIterator();
+        while (iterator.hasNext()) {
+            Putable p = iterator.next();
+            if (p instanceof Movable && ((Movable) p).hasTarget()) {
+                gc.beginPath();
+                gc.moveTo(p.getX(),p.getY());
+                gc.lineTo(((Movable) p).getTarget().getX(), ((Movable) p).getTarget().getY());
+                gc.stroke();
+            }
+        }
     }
+
 
     private void draw(Putable p, GraphicsContext gc) {
 
@@ -93,6 +109,7 @@ public class simulationWindowController {
 
 
         gc.fillOval(p.getX(),p.getY(),RADIUS,RADIUS);
+
     }
 
 

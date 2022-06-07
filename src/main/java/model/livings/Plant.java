@@ -7,6 +7,8 @@ public class Plant implements Putable {
     private int healValue;
     private int hungerValue;
 
+    private boolean eaten = false;
+
     public Plant(int x, int y, int healValue, int hungerValue) {
         this.x = x;
         this.y = y;
@@ -28,6 +30,14 @@ public class Plant implements Putable {
 
     public void setHungerValue(int hungerValue) {
         this.hungerValue = hungerValue;
+    }
+
+    public boolean isEaten() {
+        return eaten;
+    }
+
+    public void die() {
+        eaten = true;
     }
 
     @Override

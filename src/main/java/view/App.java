@@ -25,10 +25,13 @@ public class App extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
         primaryStage.setTitle("Menu główne");
+
+        /*
         Media media = new Media(getClass().getResource("/soundtrack.mp3").toURI().toString());
         MediaPlayer player = new MediaPlayer(media);
         mediaView.setMediaPlayer(player);
         player.play();
+         */
 
 
     }
