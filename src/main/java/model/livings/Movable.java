@@ -1,5 +1,7 @@
 package model.livings;
 
+import model.board.Safari;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +24,8 @@ public interface Movable {
      Putable getTarget();
 
      void moveToTarget();
+
+     boolean isInRangeOfTarget();
 
 
 }

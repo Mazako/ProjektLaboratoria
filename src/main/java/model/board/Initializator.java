@@ -31,6 +31,10 @@ public class Initializator {
     private int hungerValueMin = 80;
     private int hungerValueMax = 100;
 
+    private int plantsPerTick = 2;
+
+    private int ticksPerPlantSpawn = 100;
+
     //ilości startowe
 
     private int lions = 10;
@@ -222,5 +226,21 @@ public class Initializator {
 
     public void setPlants(int plants) {
         this.plants = plants;
+    }
+
+    public int getPlantsPerTick() {
+        return plantsPerTick;
+    }
+
+    public void setPlantsPerTick(int plantsPerTick) {
+        this.plantsPerTick = plantsPerTick;
+    }
+
+    public int getTicksPerPlantSpawn() {
+        return ticksPerPlantSpawn;
+    }
+
+    public void setTicksPerPlantSpawn(int ticksPerPlantSpawn) {
+        this.ticksPerPlantSpawn = ticksPerPlantSpawn;
     }
 }

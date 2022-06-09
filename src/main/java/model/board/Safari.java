@@ -1,5 +1,6 @@
 package model.board;
 
+import javafx.scene.canvas.GraphicsContext;
 import model.livings.*;
 
 import java.util.ArrayList;
@@ -7,24 +8,38 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Safari {
 
     private static Random random = new Random();
 
-    public static int MAX_WIDTH = 600;
-    public static int MAX_HEIGHT = 600;
+    public static int MAX_WIDTH = 800;
+    public static int MAX_HEIGHT = 800;
     private ArrayList<Putable> objects;
+
+    private int tick;
+
+    private int ticksCountToSpawnPlant;
+    private int plantsSpawnPerTick;
+
+    private Initializator init;
 
     public Safari(Initializator initializator) {
         objects = new ArrayList<>();
 
         initializePlants(objects, initializator);
-        //initializeLions(objects, initializator);
+        initializeLions(objects, initializator);
         initializeZebras(objects, initializator);
-        //initializeSnakes(objects, initializator);
+        initializeSnakes(objects, initializator);
         initializeGiraffes(objects, initializator);
         setRandomDirections();
+        setTargets();
+        ticksCountToSpawnPlant = initializator.getTicksPerPlantSpawn();
+        plantsSpawnPerTick = initializator.getPlantsPerTick();
+        init = initializator;
+
+        tick = 0;
     }
 
     private void setRandomDirections() {
@@ -167,4 +182,89 @@ public class Safari {
     public ArrayList<Putable> getObjects() {
         return objects;
     }
+
+    public int getTick() {
+        return tick;
+    }
+
+
+    public void step() {
+        checkPlantSpawn();
+        Iterator<Putable> iterator = objects.iterator();
+        while (iterator.hasNext()) {
+            Putable p = iterator.next();
+            if (p instanceof Movable) {
+                if (((Movable) p).hasTarget()) {
+                    targetMove(p);
+                } else {
+                    if (p instanceof Herbivore && plantSize() == 0)
+                        ((Herbivore) p).randomMove();
+                    if (p instanceof Carnivore && hebivoreSize() == 0)
+                        ((Carnivore) p).randomMove();
+                    else
+                        ((Movable) p).findTarget(objects);
+                }
+            }
+            if (p instanceof Plant) {
+                    if (((Plant) p).isEaten()) {
+                        deletePlantsTargets((Plant) p);
+                        iterator.remove();
+                    }
+                }
+
+            }
+
+
+        tick++;
+        }
+
+    private void checkPlantSpawn() {
+        if (tick % 100 == 0) {
+            for (int i = 0; i < plantsSpawnPerTick; i++) {
+                int x = getRandomX();
+                int y = getRandomY();
+                int healvalue = random.nextInt(init.getHealValueMax() - init.getHealValueMin() + 1) + init.getHealValueMin();
+                int hungerValue = random.nextInt(init.getHungerValueMax() - init.getHungerValueMin() + 1) + init.getHungerValueMin();
+                objects.add(new Plant(x,y,healvalue,hungerValue));
+            }
+        }
+    }
+
+    private void targetMove(Putable p) {
+        int prevX = p.getX();
+        int prevY = p.getY();
+        ((Movable) p).moveToTarget();
+        if (isSomeoneHere(p.getX(), p.getY())) {
+            p.setX(prevX);
+            p.setY(prevY);
+            ((Movable) p).randomMove();
+        }
+
+        if (((Movable) p).isInRangeOfTarget()) {
+            if (p instanceof Herbivore) {
+                ((Herbivore) p).eat(((Herbivore) p).getTarget());
+
+            }
+        }
+    }
+
+    private void deletePlantsTargets(Plant plant) {
+            for (Putable object : objects) {
+                if (object instanceof Herbivore && ((Herbivore) object).hasTarget()) {
+                    if (((Herbivore) object).getTarget().equals(plant))
+                        ((Herbivore) object).setTarget(null);
+                }
+            }
+        }
+
+        boolean isSomeoneHere(int x, int y) {
+            long count = objects.stream()
+                    .filter(o -> !(o instanceof Plant))
+                    .filter(o -> o.getX() == x && o.getY() == y)
+                    .count();
+            return count > 1;
+        }
+
+
 }
+

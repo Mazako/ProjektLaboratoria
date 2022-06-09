@@ -48,7 +48,7 @@ public class simulationWindowController {
         GraphicsContext gc = boardCanvas.getGraphicsContext2D();
         Safari safari = new Safari(initializator);
         safari.setTargets();
-        Timeline animation = new Timeline(new KeyFrame(Duration.millis(100), event -> {
+        Timeline animation = new Timeline(new KeyFrame(Duration.millis(50), event -> {
             testloop(safari, gc);
             stepLabel.setText(Integer.toString(Integer.parseInt(stepLabel.getText()) +  1));
         }));
@@ -61,27 +61,12 @@ public class simulationWindowController {
 
     private void testloop(Safari safari, GraphicsContext gc) {
             gc.clearRect(0,0,Safari.MAX_WIDTH + 100 ,Safari.MAX_HEIGHT + 100);
-            Iterator<Putable> iterator = safari.getIterator();
-            while(iterator.hasNext()) {
-                Putable p = iterator.next();
-                if (p instanceof Movable) {
-                    if (((Movable) p).hasTarget())
-                        ((Movable) p).moveToTarget();
-                    else {
-                        ((Movable) p).randomMove();
-                        ((Movable) p).findTarget(safari.getObjects());
-                    }
-                }
-                if (p instanceof Plant && ((Plant) p).isEaten()) {
-                    iterator.remove();
-                }
-                draw(p,gc);
-            }
-            drawDistances(safari,gc);
+            safari.step();
+            draw(safari.getIterator(), gc);
+            //drawDistances(safari.getIterator(),gc);
     }
 
-    private void drawDistances(Safari safari, GraphicsContext gc) {
-        Iterator<Putable> iterator = safari.getIterator();
+    private void drawDistances(Iterator<Putable> iterator, GraphicsContext gc) {
         while (iterator.hasNext()) {
             Putable p = iterator.next();
             if (p instanceof Movable && ((Movable) p).hasTarget()) {
@@ -93,23 +78,40 @@ public class simulationWindowController {
         }
     }
 
+    private void draw(Iterator<Putable> iter, GraphicsContext gc) {
 
-    private void draw(Putable p, GraphicsContext gc) {
+        while (iter.hasNext()) {
+            Putable p = iter.next();
+            if (p instanceof Lion)
+                gc.setFill(Color.BLUE);
+            else if (p instanceof Snake)
+                gc.setFill(Color.RED);
+            else if (p instanceof Zebra)
+                gc.setFill(Color.BLACK);
+            else if (p instanceof Giraffe)
+                gc.setFill(Color.YELLOW);
+            else if (p instanceof Plant)
+                gc.setFill(Color.GREEN);
 
-        if (p instanceof Lion)
-            gc.setFill(Color.BLUE);
-        else if (p instanceof Snake)
+
+            gc.fillOval(p.getX(), p.getY(), RADIUS, RADIUS);
+            drawHealth(p, gc);
+        }
+
+    }
+
+    private void drawHealth(Putable p, GraphicsContext gc) {
+        if (p instanceof Animal) {
+            int healthFullLength = 45;
+            if (p instanceof Snake) {
+                System.out.println(((Animal) p).getHealth());
+                System.out.println(((Animal) p).getMaxHp());
+            }
+            double healthPercent = ((Animal) p).getHealth()/(double)((Animal) p).getMaxHp();
+            healthFullLength *= healthPercent;
             gc.setFill(Color.RED);
-        else if (p instanceof Zebra)
-            gc.setFill(Color.BLACK);
-        else if (p instanceof Giraffe)
-            gc.setFill(Color.YELLOW);
-        else if (p instanceof Plant)
-            gc.setFill(Color.GREEN);
-
-
-        gc.fillOval(p.getX(),p.getY(),RADIUS,RADIUS);
-
+            gc.fillRect(p.getX() - 10, p.getY() - 10, healthFullLength, 5 );
+        }
     }
 
 

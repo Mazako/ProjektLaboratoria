@@ -56,7 +56,7 @@
                         <HBox layoutX="10.0" layoutY="140.0" prefHeight="43.0" prefWidth="218.0">
                            <children>
                               <Label prefHeight="24.0" prefWidth="68.0" text="Ilość" />
-                              <TextField fx:id="lionCountValue" text="10" />
+                              <TextField fx:id="lionCountValue" text="5" />
                            </children>
                            <padding>
                               <Insets left="5.0" right="10.0" top="5.0" />
@@ -109,7 +109,7 @@
                         <HBox layoutX="10.0" layoutY="140.0" prefHeight="43.0" prefWidth="218.0">
                            <children>
                               <Label prefHeight="24.0" prefWidth="68.0" text="Ilość" />
-                              <TextField fx:id="snakeCountValue" text="10" />
+                              <TextField fx:id="snakeCountValue" text="5" />
                            </children>
                            <padding>
                               <Insets left="5.0" right="10.0" top="5.0" />
@@ -153,7 +153,7 @@
                         <HBox layoutX="10.0" layoutY="140.0" prefHeight="43.0" prefWidth="218.0">
                            <children>
                               <Label prefHeight="24.0" prefWidth="68.0" text="Ilość" />
-                              <TextField fx:id="giraffeCountValue" text="10" />
+                              <TextField fx:id="giraffeCountValue" text="5" />
                            </children>
                            <padding>
                               <Insets left="5.0" right="10.0" top="5.0" />
@@ -197,7 +197,7 @@
                         <HBox layoutX="10.0" layoutY="140.0" prefHeight="43.0" prefWidth="218.0">
                            <children>
                               <Label prefHeight="24.0" prefWidth="68.0" text="Ilość" />
-                              <TextField fx:id="zebraCountValue" text="10" />
+                              <TextField fx:id="zebraCountValue" text="5" />
                            </children>
                            <padding>
                               <Insets left="5.0" right="10.0" top="5.0" />

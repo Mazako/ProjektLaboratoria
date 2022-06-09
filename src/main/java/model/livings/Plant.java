@@ -1,5 +1,7 @@
 package model.livings;
 
+import java.util.Objects;
+
 public class Plant implements Putable {
 
     private int x;
@@ -58,5 +60,19 @@ public class Plant implements Putable {
     @Override
     public void setY(int y) {
         this.y = y;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Plant plant = (Plant) o;
+        return x == plant.x && y == plant.y && healValue == plant.healValue && hungerValue == plant.hungerValue && eaten == plant.eaten;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y, healValue, hungerValue, eaten);
     }
 }
