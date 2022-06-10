@@ -4,11 +4,14 @@ import controller.simulationWindowController;
 import model.board.Safari;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 
 public abstract class Animal implements Movable, Putable {
 
     private static final Random random = new Random();
+
+    public static int TARGET_RANGE = (simulationWindowController.RADIUS);
 
     private int x;
     private int y;
@@ -231,8 +234,8 @@ public abstract class Animal implements Movable, Putable {
 
     @Override
     public boolean isInRangeOfTarget() {
-        for (int i = -simulationWindowController.RADIUS; i <= simulationWindowController.RADIUS; i++) {
-            for (int j = -1; j<= 1; j++) {
+        for (int i = -TARGET_RANGE; i <= TARGET_RANGE; i++) {
+            for (int j = -TARGET_RANGE; j<= TARGET_RANGE; j++) {
                 if (getX() + i == getTarget().getX() && getY() + j == getTarget().getY()) {
                     return true;
                 }
@@ -245,4 +248,20 @@ public abstract class Animal implements Movable, Putable {
         return maxHp;
     }
 
+    public boolean isAlive() {
+        return getHealth() > 0;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Animal animal = (Animal) o;
+        return x == animal.x && y == animal.y && health == animal.health && hunger == animal.hunger && speed == animal.speed && maxHp == animal.maxHp && leftRightDirection == animal.leftRightDirection && upDownDirection == animal.upDownDirection && Objects.equals(Target, animal.Target);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y, health, hunger, speed, leftRightDirection, upDownDirection, Target, maxHp);
+    }
 }

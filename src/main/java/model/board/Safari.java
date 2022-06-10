@@ -38,7 +38,6 @@ public class Safari {
         ticksCountToSpawnPlant = initializator.getTicksPerPlantSpawn();
         plantsSpawnPerTick = initializator.getPlantsPerTick();
         init = initializator;
-
         tick = 0;
     }
 
@@ -104,7 +103,8 @@ public class Safari {
             int hunger = initializator.getLionHunger();
             int speed = initializator.getLionSpeed();
             int attackValue = initializator.getLionAttackValue();
-            objects.add(new Lion(x,y,health,hunger,speed,attackValue));
+            Lion lion = new Lion(x,y,health,hunger,speed,attackValue);
+            objects.add(lion);
         }
     }
 
@@ -190,12 +190,21 @@ public class Safari {
 
     public void step() {
         checkPlantSpawn();
+        setTargets();
         Iterator<Putable> iterator = objects.iterator();
         while (iterator.hasNext()) {
             Putable p = iterator.next();
             if (p instanceof Movable) {
                 if (((Movable) p).hasTarget()) {
-                    targetMove(p);
+                        if (p instanceof Carnivore) {
+                            if (((Carnivore) p).canAttack()) {
+                                targetMove(p);
+                            } else {
+                                ((Carnivore) p).randomMove();
+                            }
+                    } else if (p instanceof Herbivore) {
+                            targetMove(p);
+                        }
                 } else {
                     if (p instanceof Herbivore && plantSize() == 0)
                         ((Herbivore) p).randomMove();
@@ -211,12 +220,29 @@ public class Safari {
                         iterator.remove();
                     }
                 }
-
+            else if (p instanceof Animal) {
+                if (!((Animal) p).isAlive()) {
+                    deleteAnimalTargets((Animal) p);
+                    iterator.remove();
+                }
             }
 
+            }
+        objects.stream()
+                .filter(x -> x instanceof Carnivore)
+                .forEach(x -> ((Carnivore) x).downCooldown());
 
         tick++;
         }
+
+    private void deleteAnimalTargets(Animal p) {
+        for (Putable object : objects) {
+            if (object instanceof Animal && ((Animal) object).hasTarget()) {
+                if (((Animal) object).getTarget().equals(p))
+                    ((Animal) object).setTarget(null);
+            }
+        }
+    }
 
     private void checkPlantSpawn() {
         if (tick % 100 == 0) {
@@ -243,7 +269,9 @@ public class Safari {
         if (((Movable) p).isInRangeOfTarget()) {
             if (p instanceof Herbivore) {
                 ((Herbivore) p).eat(((Herbivore) p).getTarget());
-
+            }
+            if (p instanceof Carnivore) {
+                ((Carnivore) p).attack(((Carnivore) p).getTarget());
             }
         }
     }
@@ -264,6 +292,8 @@ public class Safari {
                     .count();
             return count > 1;
         }
+
+
 
 
 }

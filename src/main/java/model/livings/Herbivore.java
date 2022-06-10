@@ -33,7 +33,9 @@ public abstract class Herbivore extends Animal {
     }
 
     public void eat(Plant target) {
+        setHealth(Math.min(target.getHealValue() + getHealth(), getMaxHp()));
         target.die();
+
     }
 
 }

@@ -29,6 +29,21 @@ public class simulationWindowController {
     private AnchorPane boardAnchorPane;
 
     @FXML
+    private Label giraffeCountLabel;
+
+    @FXML
+    private Label lionCountLabel;
+
+    @FXML
+    private Label plantsCountLabel;
+
+    @FXML
+    private Label snakeCountLabel;
+
+    @FXML
+    private Label zebraCountLabel;
+
+    @FXML
     private Canvas boardCanvas;
 
     @FXML
@@ -48,9 +63,9 @@ public class simulationWindowController {
         GraphicsContext gc = boardCanvas.getGraphicsContext2D();
         Safari safari = new Safari(initializator);
         safari.setTargets();
-        Timeline animation = new Timeline(new KeyFrame(Duration.millis(50), event -> {
-            testloop(safari, gc);
-            stepLabel.setText(Integer.toString(Integer.parseInt(stepLabel.getText()) +  1));
+        Timeline animation = new Timeline(new KeyFrame(Duration.millis(75), event -> {
+            stepLoop(safari, gc);
+            setValues(safari);
         }));
         animation.setCycleCount(Animation.INDEFINITE);
         animation.play();
@@ -58,8 +73,17 @@ public class simulationWindowController {
 
     }
 
+    private void setValues(Safari safari) {
+        lionCountLabel.setText(Integer.toString(safari.lionSize()));
+        snakeCountLabel.setText(Integer.toString(safari.snakeSize()));
+        zebraCountLabel.setText(Integer.toString(safari.zebraSize()));
+        giraffeCountLabel.setText(Integer.toString(safari.giraffeSize()));
+        plantsCountLabel.setText(Integer.toString(safari.plantSize()));
+        stepLabel.setText(Integer.toString(safari.getTick()));
+    }
 
-    private void testloop(Safari safari, GraphicsContext gc) {
+
+    private void stepLoop(Safari safari, GraphicsContext gc) {
             gc.clearRect(0,0,Safari.MAX_WIDTH + 100 ,Safari.MAX_HEIGHT + 100);
             safari.step();
             draw(safari.getIterator(), gc);
@@ -103,10 +127,6 @@ public class simulationWindowController {
     private void drawHealth(Putable p, GraphicsContext gc) {
         if (p instanceof Animal) {
             int healthFullLength = 45;
-            if (p instanceof Snake) {
-                System.out.println(((Animal) p).getHealth());
-                System.out.println(((Animal) p).getMaxHp());
-            }
             double healthPercent = ((Animal) p).getHealth()/(double)((Animal) p).getMaxHp();
             healthFullLength *= healthPercent;
             gc.setFill(Color.RED);

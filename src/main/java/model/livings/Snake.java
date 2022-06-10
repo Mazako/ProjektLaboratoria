@@ -8,10 +8,6 @@ public class Snake extends  Carnivore{
 
     }
 
-    @Override
-    public void attack(Animal animal) {
-
-    }
 
 
 }
