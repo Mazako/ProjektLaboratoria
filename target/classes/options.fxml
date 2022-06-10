@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="643.0" prefWidth="247.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.optionsController">
+   <children>
+      <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="598.0" prefWidth="247.0" side="LEFT" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab text="Parametry lwów">
+               <content>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <HBox prefHeight="43.0" prefWidth="218.0">
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="68.0" text="Zdrowie: " />
+                              <TextField fx:id="lionHpValue" text="200" />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="10.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="43.0" prefWidth="218.0">
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="68.0" text="Głód" />
+                              <TextField fx:id="lionHungerValue" text="100" />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="10.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="53.0" prefHeight="43.0" prefWidth="218.0">
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="68.0" text="Szybkość" />
+                              <TextField fx:id="lionSpeedValue" text="5" />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="10.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="96.0" prefHeight="43.0" prefWidth="218.0">
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="68.0" text="Atak" />
+                              <TextField fx:id="lionAttackValue" text="80" />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="10.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="140.0" prefHeight="43.0" prefWidth="218.0">
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="68.0" text="Ilość" />
+                              <TextField fx:id="lionCountValue" text="3" />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="10.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </content>
+            </Tab>
+            <Tab text="Parametry węży">
+               <content>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <HBox prefHeight="43.0" prefWidth="218.0">
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="68.0" text="Zdrowie: " />
+                              <TextField fx:id="snakeHpValue" text="150" />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="10.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="43.0" prefWidth="218.0">
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="68.0" text="Głód" />
+                              <TextField fx:id="snakeHungerValue" text="100" />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="10.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="53.0" prefHeight="43.0" prefWidth="218.0">
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="68.0" text="Szybkość" />
+                              <TextField fx:id="snakeSpeedValue" text="6" />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="10.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="96.0" prefHeight="43.0" prefWidth="218.0">
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="68.0" text="Atak" />
+                              <TextField fx:id="snakeAttackValue" text="50" />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="10.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="140.0" prefHeight="43.0" prefWidth="218.0">
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="68.0" text="Ilość" />
+                              <TextField fx:id="snakeCountValue" text="3" />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="10.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </content>
+            </Tab>
+            <Tab text="Parametry żyraf">
+               <content>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <HBox prefHeight="43.0" prefWidth="218.0">
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="68.0" text="Zdrowie: " />
+                              <TextField fx:id="giraffeHpValue" text="300" />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="10.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="43.0" prefWidth="218.0">
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="68.0" text="Głód" />
+                              <TextField fx:id="giraffeHungerValue" text="100" />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="10.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="53.0" prefHeight="43.0" prefWidth="218.0">
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="68.0" text="Szybkość" />
+                              <TextField fx:id="giraffeSpeedValue" text="6" />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="10.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="140.0" prefHeight="43.0" prefWidth="218.0">
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="68.0" text="Ilość" />
+                              <TextField fx:id="giraffeCountValue" text="3" />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="10.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </content>
+            </Tab>
+            <Tab text="Parametry Zebr">
+               <content>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <HBox prefHeight="43.0" prefWidth="218.0">
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="68.0" text="Zdrowie: " />
+                              <TextField fx:id="zebraHpValue" text="250" />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="10.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="43.0" prefWidth="218.0">
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="68.0" text="Głód" />
+                              <TextField fx:id="zebraHungerValue" text="100" />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="10.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="53.0" prefHeight="43.0" prefWidth="218.0">
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="68.0" text="Szybkość" />
+                              <TextField fx:id="zebraSpeedValue" text="8" />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="10.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="140.0" prefHeight="43.0" prefWidth="218.0">
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="68.0" text="Ilość" />
+                              <TextField fx:id="zebraCountValue" text="3" />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="10.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </content>
+            </Tab>
+            <Tab text="Parametry Roślin">
+               <content>
+                  <VBox prefHeight="458.0" prefWidth="218.0">
+                     <children>
+                        <HBox prefHeight="43.0" prefWidth="218.0">
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="99.0" text="Zdrowie min:" />
+                              <TextField fx:id="plantMinHpValue" text="50" />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="10.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="43.0" prefWidth="218.0">
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="106.0" text="Zdrowie max:" />
+                              <TextField fx:id="plantMaxHpValue" prefHeight="26.0" prefWidth="154.0" text="75" />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="10.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="53.0" prefHeight="43.0" prefWidth="218.0">
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="68.0" text="Głód min:">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="plantMinHungerValue" prefHeight="26.0" prefWidth="131.0" text="80">
+                                 <HBox.margin>
+                                    <Insets left="15.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="10.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="96.0" prefHeight="43.0" prefWidth="218.0">
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="94.0" text="Głód max:" />
+                              <TextField fx:id="plantMaxHungerValue" text="100">
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="10.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="140.0" prefHeight="43.0" prefWidth="218.0">
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="68.0" text="Ilość" />
+                              <TextField fx:id="plantCountValue" prefHeight="26.0" prefWidth="134.0" text="10">
+                                 <HBox.margin>
+                                    <Insets left="15.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="10.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </content>
+            </Tab>
+            <Tab text="Różne">
+               <content>
+                  <VBox prefHeight="458.0" prefWidth="218.0">
+                     <children>
+                        <HBox prefHeight="43.0" prefWidth="218.0">
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="68.0" text="Zdrowie: " />
+                              <TextField />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="10.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="43.0" prefWidth="218.0">
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="68.0" text="Głód" />
+                              <TextField />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="10.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="53.0" prefHeight="43.0" prefWidth="218.0">
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="68.0" text="Szybkość" />
+                              <TextField />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="10.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="96.0" prefHeight="43.0" prefWidth="218.0">
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="68.0" text="Atak" />
+                              <TextField />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="10.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="140.0" prefHeight="43.0" prefWidth="218.0">
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="68.0" text="Ilość" />
+                              <TextField />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="10.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+      <Button fx:id="startingButton" mnemonicParsing="false" prefHeight="66.0" prefWidth="246.0" text="START">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </Button>
+   </children>
+</VBox>
