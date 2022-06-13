@@ -8,7 +8,7 @@ public class Initializator {
     private int lionSpeed = 2;
     private int lionAttackValue =150;
 
-    //zyrafa
+    //żyrafa
     private int giraffeHealth = 300;
     private int giraffeHunger = 100;
     private int giraffeSpeed = 2;
@@ -30,6 +30,10 @@ public class Initializator {
     private int healValueMax = 70;
     private int hungerValueMin = 80;
     private int hungerValueMax = 100;
+
+    private int plantsPerTick = 2;
+
+    private int ticksPerPlantSpawn = 100;
 
     //ilości startowe
 
@@ -222,5 +226,21 @@ public class Initializator {
 
     public void setPlants(int plants) {
         this.plants = plants;
+    }
+
+    public int getPlantsPerTick() {
+        return plantsPerTick;
+    }
+
+    public void setPlantsPerTick(int plantsPerTick) {
+        this.plantsPerTick = plantsPerTick;
+    }
+
+    public int getTicksPerPlantSpawn() {
+        return ticksPerPlantSpawn;
+    }
+
+    public void setTicksPerPlantSpawn(int ticksPerPlantSpawn) {
+        this.ticksPerPlantSpawn = ticksPerPlantSpawn;
     }
 }

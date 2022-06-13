@@ -22,12 +22,26 @@ import java.util.Random;
 
 public class simulationWindowController {
 
-    public static int RECT_WIDTH = 5;
-    public static int RECT_HEIGHT = 5;
+    public static int RADIUS = 25;
 
 
     @FXML
     private AnchorPane boardAnchorPane;
+
+    @FXML
+    private Label giraffeCountLabel;
+
+    @FXML
+    private Label lionCountLabel;
+
+    @FXML
+    private Label plantsCountLabel;
+
+    @FXML
+    private Label snakeCountLabel;
+
+    @FXML
+    private Label zebraCountLabel;
 
     @FXML
     private Canvas boardCanvas;
@@ -48,9 +62,10 @@ public class simulationWindowController {
     public void initialize() {
         GraphicsContext gc = boardCanvas.getGraphicsContext2D();
         Safari safari = new Safari(initializator);
-        Timeline animation = new Timeline(new KeyFrame(Duration.millis(100), event -> {
-            testloop(safari, gc);
-            stepLabel.setText(Integer.toString(Integer.parseInt(stepLabel.getText()) +  1));
+        safari.setTargets();
+        Timeline animation = new Timeline(new KeyFrame(Duration.millis(75), event -> {
+            stepLoop(safari, gc);
+            setValues(safari);
         }));
         animation.setCycleCount(Animation.INDEFINITE);
         animation.play();
@@ -58,42 +73,65 @@ public class simulationWindowController {
 
     }
 
+    private void setValues(Safari safari) {
+        lionCountLabel.setText(Integer.toString(safari.lionSize()));
+        snakeCountLabel.setText(Integer.toString(safari.snakeSize()));
+        zebraCountLabel.setText(Integer.toString(safari.zebraSize()));
+        giraffeCountLabel.setText(Integer.toString(safari.giraffeSize()));
+        plantsCountLabel.setText(Integer.toString(safari.plantSize()));
+        stepLabel.setText(Integer.toString(safari.getTick()));
+    }
 
-    private void testloop(Safari safari, GraphicsContext gc) {
+
+    private void stepLoop(Safari safari, GraphicsContext gc) {
             gc.clearRect(0,0,Safari.MAX_WIDTH + 100 ,Safari.MAX_HEIGHT + 100);
-            Iterator<Putable> iterator = safari.getIterator();
-            while(iterator.hasNext()) {
-                Putable p = iterator.next();
-                if (p instanceof Movable) {
-                    ((Movable) p).move(random.nextInt(10)-5, random.nextInt(10)-5); ;
-                }
-                draw(p,gc);
+            safari.step();
+            draw(safari.getIterator(), gc);
+            //drawDistances(safari.getIterator(),gc);
+    }
+
+    private void drawDistances(Iterator<Putable> iterator, GraphicsContext gc) {
+        while (iterator.hasNext()) {
+            Putable p = iterator.next();
+            if (p instanceof Movable && ((Movable) p).hasTarget()) {
+                gc.beginPath();
+                gc.moveTo(p.getX(),p.getY());
+                gc.lineTo(((Movable) p).getTarget().getX(), ((Movable) p).getTarget().getY());
+                gc.stroke();
             }
+        }
     }
 
-    public void test2(Lion lion, GraphicsContext gc) {
-        gc.clearRect(0,0,Safari.MAX_WIDTH+100,Safari.MAX_HEIGHT+100);
-        System.out.println("a");
-            gc.fillRect(lion.getX(), lion.getY(), 4,4);
-            ((Movable) lion).move(10,4);
-        System.out.println(lion.getY());
+    private void draw(Iterator<Putable> iter, GraphicsContext gc) {
+
+        while (iter.hasNext()) {
+            Putable p = iter.next();
+            if (p instanceof Lion)
+                gc.setFill(Color.BLUE);
+            else if (p instanceof Snake)
+                gc.setFill(Color.RED);
+            else if (p instanceof Zebra)
+                gc.setFill(Color.BLACK);
+            else if (p instanceof Giraffe)
+                gc.setFill(Color.YELLOW);
+            else if (p instanceof Plant)
+                gc.setFill(Color.GREEN);
+
+
+            gc.fillOval(p.getX(), p.getY(), RADIUS, RADIUS);
+            drawHealth(p, gc);
+        }
+
     }
 
-    private void draw(Putable p, GraphicsContext gc) {
-
-        if (p instanceof Lion)
-            gc.setFill(Color.BLUE);
-        else if (p instanceof Snake)
+    private void drawHealth(Putable p, GraphicsContext gc) {
+        if (p instanceof Animal) {
+            int healthFullLength = 45;
+            double healthPercent = ((Animal) p).getHealth()/(double)((Animal) p).getMaxHp();
+            healthFullLength *= healthPercent;
             gc.setFill(Color.RED);
-        else if (p instanceof Zebra)
-            gc.setFill(Color.BLACK);
-        else if (p instanceof Giraffe)
-            gc.setFill(Color.YELLOW);
-        else if (p instanceof Plant)
-            gc.setFill(Color.GREEN);
-
-
-        gc.fillRect(p.getX(),p.getY(),RECT_WIDTH,RECT_HEIGHT);
+            gc.fillRect(p.getX() - 10, p.getY() - 10, healthFullLength, 5 );
+        }
     }
 
 

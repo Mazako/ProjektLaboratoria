@@ -1,18 +1,41 @@
 package model.livings;
 
+import java.lang.annotation.Target;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
 public abstract class Herbivore extends Animal {
 
-    private Plant target;
+
 
     public Herbivore(int x, int y, int health, int hunger, int speed) {
         super(x, y, health, hunger, speed);
     }
 
-    public Plant getTarget() {
-        return target;
+
+    @Override
+    public boolean hasTarget() {
+        return getTarget() != null;
     }
 
-    public void setTarget(Plant target) {
-        this.target = target;
+    @Override
+    public void findTarget(List<Putable> list) {
+        list.stream()
+                .filter(x -> x instanceof Plant)
+                .min(Comparator.comparing(this::distanceBetween))
+                .ifPresent(x -> this.setTarget((Plant) x));
     }
+
+    @Override
+    public Plant getTarget() {
+        return (Plant) super.getTarget();
+    }
+
+    public void eat(Plant target) {
+        setHealth(Math.min(target.getHealValue() + getHealth(), getMaxHp()));
+        target.die();
+
+    }
+
 }

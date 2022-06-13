@@ -7,9 +7,6 @@ public class Lion extends Carnivore {
         super(x, y, health, hunger, speed, attackValue);
     }
 
-    @Override
-    public void attack(Animal animal) {
 
-    }
 
 }
