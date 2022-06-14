@@ -6,13 +6,11 @@ import java.util.stream.Stream;
 
 public abstract class Carnivore extends Animal {
 
-    private static final int COOLDOWN_VALUE = 8;
-
     public int cooldown ;
     private int attackValue;
 
-    public Carnivore(int x, int y, int health, int hunger, int speed, int attackValue) {
-        super(x, y, health, hunger, speed);
+    public Carnivore(int x, int y, int health, int speed, int attackValue) {
+        super(x, y, health, speed);
         this.attackValue = attackValue;
         this.cooldown = 10;
     }
@@ -26,9 +24,12 @@ public abstract class Carnivore extends Animal {
     }
 
 
-    public  void attack(Animal animal) {
+    public  void attack(Animal animal, int cooldownValue) {
         animal.setHealth(animal.getHealth() - getAttackValue());
-        startCooldown();
+        if (animal.getHealth() <= 0) {
+            setHealth(Math.min(getMaxHp(), getHealth() + animal.getMaxHp()));
+        }
+        startCooldown(cooldownValue);
     }
 
     @Override
@@ -49,8 +50,8 @@ public abstract class Carnivore extends Animal {
                  .ifPresent(this::setTarget);
     }
 
-    public void startCooldown() {
-        cooldown = COOLDOWN_VALUE;
+    public void startCooldown(int cooldownValue) {
+        cooldown = cooldownValue;
     }
     public void downCooldown() {
         if (cooldown > 0)
@@ -60,5 +61,6 @@ public abstract class Carnivore extends Animal {
     public boolean canAttack() {
         return cooldown == 0;
     }
+
 
 }

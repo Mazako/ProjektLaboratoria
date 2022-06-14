@@ -4,32 +4,26 @@ public class Initializator {
 
     //lew
     private int lionHealth = 200;
-    private int lionHunger = 100;
     private int lionSpeed = 2;
     private int lionAttackValue =150;
 
     //żyrafa
     private int giraffeHealth = 300;
-    private int giraffeHunger = 100;
     private int giraffeSpeed = 2;
 
     //wąż
     private int snakeHealth = 150;
-    private int snakeHunger = 100;
     private int snakeSpeed = 3;
     private int snakeAttackValue = 50;
 
     //zebra
     private int zebraHealth = 250;
-    private int zebraHunger = 100;
     private int zebraSpeed = 3;
 
     //roślina
 
     private int healValueMin = 50;
     private int healValueMax = 70;
-    private int hungerValueMin = 80;
-    private int hungerValueMax = 100;
 
     private int plantsPerTick = 2;
 
@@ -43,6 +37,13 @@ public class Initializator {
     private int giraffes = 10;
     private int plants = 10;
 
+    private int attackCooldown;
+
+    private int hungerPerTick;
+
+    private boolean showDistances;
+
+
 
     public int getLionHealth() {
         return lionHealth;
@@ -52,13 +53,7 @@ public class Initializator {
         this.lionHealth = lionHealth;
     }
 
-    public int getLionHunger() {
-        return lionHunger;
-    }
 
-    public void setLionHunger(int lionHunger) {
-        this.lionHunger = lionHunger;
-    }
 
     public int getLionSpeed() {
         return lionSpeed;
@@ -84,13 +79,6 @@ public class Initializator {
         this.giraffeHealth = giraffeHealth;
     }
 
-    public int getGiraffeHunger() {
-        return giraffeHunger;
-    }
-
-    public void setGiraffeHunger(int giraffeHunger) {
-        this.giraffeHunger = giraffeHunger;
-    }
 
     public int getGiraffeSpeed() {
         return giraffeSpeed;
@@ -108,13 +96,6 @@ public class Initializator {
         this.snakeHealth = snakeHealth;
     }
 
-    public int getSnakeHunger() {
-        return snakeHunger;
-    }
-
-    public void setSnakeHunger(int snakeHunger) {
-        this.snakeHunger = snakeHunger;
-    }
 
     public int getSnakeSpeed() {
         return snakeSpeed;
@@ -140,13 +121,6 @@ public class Initializator {
         this.zebraHealth = zebraHealth;
     }
 
-    public int getZebraHunger() {
-        return zebraHunger;
-    }
-
-    public void setZebraHunger(int zebraHunger) {
-        this.zebraHunger = zebraHunger;
-    }
 
     public int getZebraSpeed() {
         return zebraSpeed;
@@ -172,21 +146,6 @@ public class Initializator {
         this.healValueMax = healValueMax;
     }
 
-    public int getHungerValueMin() {
-        return hungerValueMin;
-    }
-
-    public void setHungerValueMin(int hungerValueMin) {
-        this.hungerValueMin = hungerValueMin;
-    }
-
-    public int getHungerValueMax() {
-        return hungerValueMax;
-    }
-
-    public void setHungerValueMax(int hungerValueMax) {
-        this.hungerValueMax = hungerValueMax;
-    }
 
     public int getLions() {
         return lions;
@@ -242,5 +201,29 @@ public class Initializator {
 
     public void setTicksPerPlantSpawn(int ticksPerPlantSpawn) {
         this.ticksPerPlantSpawn = ticksPerPlantSpawn;
+    }
+
+    public int getAttackCooldown() {
+        return attackCooldown;
+    }
+
+    public void setAttackCooldown(int attackCooldown) {
+        this.attackCooldown = attackCooldown;
+    }
+
+    public int getHungerPerTick() {
+        return hungerPerTick;
+    }
+
+    public void setHungerPerTick(int hungerPerTick) {
+        this.hungerPerTick = hungerPerTick;
+    }
+
+    public boolean isShowDistances() {
+        return showDistances;
+    }
+
+    public void setShowDistances(boolean showDistances) {
+        this.showDistances = showDistances;
     }
 }

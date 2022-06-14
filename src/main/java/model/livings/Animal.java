@@ -16,7 +16,6 @@ public abstract class Animal implements Movable, Putable {
     private int x;
     private int y;
     private int health;
-    private int hunger;
     private int speed;
 
     private LeftRightDirection leftRightDirection;
@@ -28,11 +27,10 @@ public abstract class Animal implements Movable, Putable {
     private final int maxHp;
 
 
-    public Animal(int x, int y, int health, int hunger, int speed) {
+    public Animal(int x, int y, int health, int speed) {
         this.x = x;
         this.y = y;
         this.health = health;
-        this.hunger = hunger;
         this.speed = speed;
         maxHp = health;
     }
@@ -51,14 +49,6 @@ public abstract class Animal implements Movable, Putable {
 
     public void setSpeed(int speed) {
         this.speed = speed;
-    }
-
-    public int getHunger() {
-        return hunger;
-    }
-
-    public void setHunger(int hunger) {
-        this.hunger = hunger;
     }
 
 
@@ -257,11 +247,11 @@ public abstract class Animal implements Movable, Putable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Animal animal = (Animal) o;
-        return x == animal.x && y == animal.y && health == animal.health && hunger == animal.hunger && speed == animal.speed && maxHp == animal.maxHp && leftRightDirection == animal.leftRightDirection && upDownDirection == animal.upDownDirection && Objects.equals(Target, animal.Target);
+        return x == animal.x && y == animal.y && health == animal.health && speed == animal.speed && maxHp == animal.maxHp && leftRightDirection == animal.leftRightDirection && upDownDirection == animal.upDownDirection && Objects.equals(Target, animal.Target);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(x, y, health, hunger, speed, leftRightDirection, upDownDirection, Target, maxHp);
+        return Objects.hash(x, y, health, speed, leftRightDirection, upDownDirection, Target, maxHp);
     }
 }

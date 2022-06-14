@@ -7,10 +7,11 @@ import java.util.List;
 
 public abstract class Herbivore extends Animal {
 
+    private int hpValue;
 
 
-    public Herbivore(int x, int y, int health, int hunger, int speed) {
-        super(x, y, health, hunger, speed);
+    public Herbivore(int x, int y, int health, int speed) {
+        super(x, y, health, speed);
     }
 
 

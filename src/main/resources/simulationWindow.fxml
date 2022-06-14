@@ -9,16 +9,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="boardAnchorPane" maxHeight="822.0" maxWidth="1077.0" minHeight="0.0" minWidth="0.0" prefHeight="822.0" prefWidth="1077.0" style="-fx-background-color: #faca64;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.simulationWindowController">
+<AnchorPane fx:id="boardAnchorPane" maxHeight="909.0" maxWidth="1232.0" minHeight="0.0" minWidth="0.0" prefHeight="848.0" prefWidth="1147.0" style="-fx-background-color: #faca64;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.simulationWindowController">
    <children>
-      <Canvas fx:id="boardCanvas" height="800.0" layoutX="14.0" layoutY="14.0" width="828.0" />
-      <Button fx:id="stopButton" layoutX="883.0" layoutY="64.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="142.0" text="Stop" />
-      <Label alignment="CENTER" layoutX="895.0" layoutY="183.0" prefHeight="21.0" prefWidth="119.0" text="Krok symulacji">
+      <Canvas fx:id="boardCanvas" height="827.0" layoutX="14.0" layoutY="14.0" width="874.0" AnchorPane.bottomAnchor="68.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="267.0" AnchorPane.topAnchor="14.0" />
+      <Button fx:id="stopButton" layoutX="913.0" layoutY="487.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="142.0" text="Stop" />
+      <Label alignment="CENTER" layoutX="924.0" layoutY="178.0" prefHeight="21.0" prefWidth="119.0" text="Krok symulacji">
          <font>
             <Font size="18.0" />
          </font></Label>
-      <Label fx:id="stepLabel" alignment="CENTER" layoutX="926.0" layoutY="242.0" prefHeight="18.0" prefWidth="57.0" text="0" />
-      <VBox layoutX="895.0" layoutY="288.0" prefHeight="200.0" prefWidth="119.0">
+      <Label fx:id="stepLabel" alignment="CENTER" layoutX="955.0" layoutY="238.0" prefHeight="18.0" prefWidth="57.0" text="0" />
+      <VBox layoutX="924.0" layoutY="287.0" prefHeight="200.0" prefWidth="119.0">
          <children>
             <HBox prefHeight="34.0" prefWidth="100.0">
                <children>

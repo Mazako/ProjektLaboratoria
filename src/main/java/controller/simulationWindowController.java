@@ -4,14 +4,15 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import model.board.Initializator;
 import model.board.Safari;
@@ -59,6 +60,7 @@ public class simulationWindowController {
     @FXML
     private static Initializator initializator;
 
+
     public void initialize() {
         GraphicsContext gc = boardCanvas.getGraphicsContext2D();
         Safari safari = new Safari(initializator);
@@ -70,6 +72,11 @@ public class simulationWindowController {
         animation.setCycleCount(Animation.INDEFINITE);
         animation.play();
         stopButton.addEventFilter(ActionEvent.ACTION, event -> animation.stop());
+        stopButton.addEventFilter(Event.ANY, event -> {
+            if (safari.isDone()) {
+                stopButton.setDisable(true);
+            }
+        });
 
     }
 
@@ -87,7 +94,9 @@ public class simulationWindowController {
             gc.clearRect(0,0,Safari.MAX_WIDTH + 100 ,Safari.MAX_HEIGHT + 100);
             safari.step();
             draw(safari.getIterator(), gc);
-            //drawDistances(safari.getIterator(),gc);
+            if (initializator.isShowDistances()) {
+                drawDistances(safari.getIterator(),gc);
+            }
     }
 
     private void drawDistances(Iterator<Putable> iterator, GraphicsContext gc) {

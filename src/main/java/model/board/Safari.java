@@ -14,6 +14,7 @@ public class Safari {
 
     private static Random random = new Random();
 
+    private boolean done = false;
     public static int MAX_WIDTH = 800;
     public static int MAX_HEIGHT = 800;
     private ArrayList<Putable> objects;
@@ -22,7 +23,9 @@ public class Safari {
 
     private int ticksCountToSpawnPlant;
     private int plantsSpawnPerTick;
+    private int hungerPerTickValue;
 
+    private int attackCooldown;
     private Initializator init;
 
     public Safari(Initializator initializator) {
@@ -37,6 +40,9 @@ public class Safari {
         setTargets();
         ticksCountToSpawnPlant = initializator.getTicksPerPlantSpawn();
         plantsSpawnPerTick = initializator.getPlantsPerTick();
+        hungerPerTickValue = initializator.getHungerPerTick();
+        attackCooldown = initializator.getAttackCooldown();
+
         init = initializator;
         tick = 0;
     }
@@ -55,8 +61,7 @@ public class Safari {
             int x = getRandomX();
             int y = getRandomY();
             int healvalue = random.nextInt(initializator.getHealValueMax() - initializator.getHealValueMin() + 1) + initializator.getHealValueMin();
-            int hungerValue = random.nextInt(initializator.getHungerValueMax() - initializator.getHungerValueMin() + 1) + initializator.getHungerValueMin();
-            objects.add(new Plant(x,y,healvalue,hungerValue));
+            objects.add(new Plant(x,y,healvalue));
 
         }
     }
@@ -66,9 +71,8 @@ public class Safari {
             int x = getRandomX();
             int y = getRandomY();
             int health = initializator.getGiraffeHealth();
-            int hunger = initializator.getGiraffeHunger();
             int speed = initializator.getGiraffeSpeed();
-            objects.add(new Giraffe(x,y,health,hunger,speed));
+            objects.add(new Giraffe(x,y,health,speed));
         }
     }
 
@@ -77,10 +81,9 @@ public class Safari {
             int x = getRandomX();
             int y = getRandomY();
             int health = initializator.getSnakeHealth();
-            int hunger = initializator.getSnakeHunger();
             int speed = initializator.getSnakeSpeed();
             int attackValue = initializator.getSnakeAttackValue();
-            objects.add(new Snake(x,y,health,hunger,speed,attackValue));
+            objects.add(new Snake(x,y,health,speed,attackValue));
         }
     }
 
@@ -89,9 +92,8 @@ public class Safari {
             int x = getRandomX();
             int y = getRandomY();
             int health = initializator.getZebraHealth();
-            int hunger = initializator.getZebraHunger();
             int speed = initializator.getZebraSpeed();
-            objects.add(new Zebra(x,y,health,hunger,speed));
+            objects.add(new Zebra(x,y,health,speed));
         }
     }
 
@@ -100,10 +102,9 @@ public class Safari {
             int x = getRandomX();
             int y = getRandomY();
             int health = initializator.getLionHealth();
-            int hunger = initializator.getLionHunger();
             int speed = initializator.getLionSpeed();
             int attackValue = initializator.getLionAttackValue();
-            Lion lion = new Lion(x,y,health,hunger,speed,attackValue);
+            Lion lion = new Lion(x,y,health,speed,attackValue);
             objects.add(lion);
         }
     }
@@ -165,6 +166,38 @@ public class Safari {
         return objects.iterator();
     }
 
+    public int getTicksCountToSpawnPlant() {
+        return ticksCountToSpawnPlant;
+    }
+
+    public void setTicksCountToSpawnPlant(int ticksCountToSpawnPlant) {
+        this.ticksCountToSpawnPlant = ticksCountToSpawnPlant;
+    }
+
+    public int getPlantsSpawnPerTick() {
+        return plantsSpawnPerTick;
+    }
+
+    public void setPlantsSpawnPerTick(int plantsSpawnPerTick) {
+        this.plantsSpawnPerTick = plantsSpawnPerTick;
+    }
+
+    public int getHungerPerTickValue() {
+        return hungerPerTickValue;
+    }
+
+    public void setHungerPerTickValue(int hungerPerTickValue) {
+        this.hungerPerTickValue = hungerPerTickValue;
+    }
+
+    public int getAttackCooldown() {
+        return attackCooldown;
+    }
+
+    public void setAttackCooldown(int attackCooldown) {
+        this.attackCooldown = attackCooldown;
+    }
+
     private int predicateSize(Predicate<Putable> predicate) {
         return (int) objects.stream()
                 .filter(predicate)
@@ -189,50 +222,55 @@ public class Safari {
 
 
     public void step() {
-        checkPlantSpawn();
-        setTargets();
-        Iterator<Putable> iterator = objects.iterator();
-        while (iterator.hasNext()) {
-            Putable p = iterator.next();
-            if (p instanceof Movable) {
-                if (((Movable) p).hasTarget()) {
+        if (!done) {
+            checkPlantSpawn();
+            setTargets();
+            Iterator<Putable> iterator = objects.iterator();
+            while (iterator.hasNext()) {
+                Putable p = iterator.next();
+                if (p instanceof Movable) {
+                    if (((Movable) p).hasTarget()) {
                         if (p instanceof Carnivore) {
                             if (((Carnivore) p).canAttack()) {
                                 targetMove(p);
                             } else {
                                 ((Carnivore) p).randomMove();
                             }
-                    } else if (p instanceof Herbivore) {
+                        } else if (p instanceof Herbivore) {
                             targetMove(p);
                         }
-                } else {
-                    if (p instanceof Herbivore && plantSize() == 0)
-                        ((Herbivore) p).randomMove();
-                    if (p instanceof Carnivore && hebivoreSize() == 0)
-                        ((Carnivore) p).randomMove();
-                    else
-                        ((Movable) p).findTarget(objects);
+                    } else {
+                        if (p instanceof Herbivore && plantSize() == 0)
+                            ((Herbivore) p).randomMove();
+                        if (p instanceof Carnivore && hebivoreSize() == 0)
+                            ((Carnivore) p).randomMove();
+                        else
+                            ((Movable) p).findTarget(objects);
+                    }
                 }
-            }
-            if (p instanceof Plant) {
+                if (p instanceof Plant) {
                     if (((Plant) p).isEaten()) {
                         deletePlantsTargets((Plant) p);
                         iterator.remove();
                     }
+                } else if (p instanceof Animal) {
+                    if (!((Animal) p).isAlive()) {
+                        deleteAnimalTargets((Animal) p);
+                        iterator.remove();
+                    }
                 }
-            else if (p instanceof Animal) {
-                if (!((Animal) p).isAlive()) {
-                    deleteAnimalTargets((Animal) p);
-                    iterator.remove();
-                }
-            }
 
             }
-        objects.stream()
-                .filter(x -> x instanceof Carnivore)
-                .forEach(x -> ((Carnivore) x).downCooldown());
+            objects.stream()
+                    .filter(x -> x instanceof Carnivore)
+                    .forEach(x -> {
+                        ((Carnivore) x).downCooldown();
+                        ((Carnivore) x).setHealth(((Carnivore) x).getHealth() - hungerPerTickValue);
+                    });
 
-        tick++;
+            tick++;
+            checkDone();
+        }
         }
 
     private void deleteAnimalTargets(Animal p) {
@@ -245,13 +283,12 @@ public class Safari {
     }
 
     private void checkPlantSpawn() {
-        if (tick % 100 == 0) {
+        if (tick % ticksCountToSpawnPlant == 0) {
             for (int i = 0; i < plantsSpawnPerTick; i++) {
                 int x = getRandomX();
                 int y = getRandomY();
                 int healvalue = random.nextInt(init.getHealValueMax() - init.getHealValueMin() + 1) + init.getHealValueMin();
-                int hungerValue = random.nextInt(init.getHungerValueMax() - init.getHungerValueMin() + 1) + init.getHungerValueMin();
-                objects.add(new Plant(x,y,healvalue,hungerValue));
+                objects.add(new Plant(x,y,healvalue));
             }
         }
     }
@@ -271,7 +308,7 @@ public class Safari {
                 ((Herbivore) p).eat(((Herbivore) p).getTarget());
             }
             if (p instanceof Carnivore) {
-                ((Carnivore) p).attack(((Carnivore) p).getTarget());
+                ((Carnivore) p).attack(((Carnivore) p).getTarget(), attackCooldown);
             }
         }
     }
@@ -293,8 +330,13 @@ public class Safari {
             return count > 1;
         }
 
+        private void checkDone() {
+            if (carnivoresSize() == 0 || hebivoreSize() == 0)
+                done = true;
+        }
 
-
-
+    public boolean isDone() {
+        return done;
+    }
 }
 

@@ -11,28 +11,16 @@ public class Plant implements Putable {
 
     private boolean eaten = false;
 
-    public Plant(int x, int y, int healValue, int hungerValue) {
+    public Plant(int x, int y, int healValue) {
         this.x = x;
         this.y = y;
         this.healValue = healValue;
-        this.hungerValue = hungerValue;
     }
 
     public int getHealValue() {
         return healValue;
     }
 
-    public void setHealValue(int healValue) {
-        this.healValue = healValue;
-    }
-
-    public int getHungerValue() {
-        return hungerValue;
-    }
-
-    public void setHungerValue(int hungerValue) {
-        this.hungerValue = hungerValue;
-    }
 
     public boolean isEaten() {
         return eaten;
