@@ -154,6 +154,10 @@ public class Safari {
         return objects.size();
     }
 
+    public int animalSize() {
+        return hebivoreSize() + carnivoresSize();
+    }
+
     public void remove(Putable p) {
         objects.remove(p);
     }
