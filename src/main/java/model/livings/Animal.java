@@ -7,6 +7,11 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
 
+
+/**
+ *ggdsgs
+ *
+ */
 public abstract class Animal implements Movable, Putable {
 
     private static final Random random = new Random();
@@ -28,6 +33,14 @@ public abstract class Animal implements Movable, Putable {
     private final int maxHp;
 
 
+    /** Konstruktor przyjmujacy parametry zwierzecia
+     *
+     * @param x wspolrzedna 'x' zwierzaka
+     * @param y wspolrzedna 'y' zwierzaka
+     * @param health zdrowie zwierzaka
+     * @param hunger glod zwierzaka
+     * @param speed szybkosc zwierzaka
+     */
     public Animal(int x, int y, int health, int hunger, int speed) {
         this.x = x;
         this.y = y;
@@ -37,26 +50,44 @@ public abstract class Animal implements Movable, Putable {
         maxHp = health;
     }
 
+    /** Metoda zwraca aktualne zdrowie zwierzecia
+     * @return aktualna ilosc zwierzecia
+     */
     public int getHealth() {
         return health;
     }
 
+    /** metoda ustawia aktualne zdrowie zwierzecia
+     * @param health
+     */
     public void setHealth(int health) {
         this.health = health;
     }
 
+    /** Metoda zwraca aktualna predkosc zwierzecia
+     * @return aktualna szybkosc zwierzecia
+     */
     public int getSpeed() {
         return speed;
     }
 
+    /** Metoda ustawia aktualna szybkosc zwierzecia
+     * @param speed
+     */
     public void setSpeed(int speed) {
         this.speed = speed;
     }
 
+    /** Metoda zwraca aktualne zdrowie zwierzecia
+     * @return aktualny głod zwierzecia
+     */
     public int getHunger() {
         return hunger;
     }
 
+    /** Metoda ustawia aktualne zdrowie zwierzecia
+     * @param hunger
+     */
     public void setHunger(int hunger) {
         this.hunger = hunger;
     }
@@ -111,6 +142,12 @@ public abstract class Animal implements Movable, Putable {
         Target = target;
     }
 
+
+    /**
+     * Metoda przenosi obiekt do puntku
+     * @param x wspolrzedna 'x' na planszy
+     * @param y wspolrzedna 'y' na planszy
+     */
     @Override
     public void move(int x, int y) {
         if (Math.abs(x) > speed) {
@@ -150,6 +187,9 @@ public abstract class Animal implements Movable, Putable {
         YRandomMove(position);
     }
 
+    /** Metoda losowo zmienia położenie naszego zwierzaka w kierunku 'Y'
+     * @param position dodatkowa wspolrzedna 'y'
+     */
     private void YRandomMove(int position) {
         switch (upDownDirection) {
             case UP -> {
@@ -169,6 +209,9 @@ public abstract class Animal implements Movable, Putable {
         }
     }
 
+    /** Metoda losowo zmienia położenie naszego zwierzaka w kierunku 'X'
+     * @param position
+     */
     private void XRandomMove(int position) {
         switch (leftRightDirection) {
             case LEFT -> {
@@ -187,6 +230,9 @@ public abstract class Animal implements Movable, Putable {
     }
 
 
+    /**Metoda ktora szuka najszybszej drogi do celu i wykonuje ruch do tego celu
+     *
+     */
     public void moveToTarget() {
         double[][] distanceTab = initDistanceTab();
 
@@ -197,6 +243,10 @@ public abstract class Animal implements Movable, Putable {
 
     }
 
+    /**Metoda szukajaca najlepszych wspolrzednych, aby poruszyc sie do celu o krok
+     * @param distanceTab
+     * @return
+     */
     private int[] findBestCoords(double[][] distanceTab) {
         int[] coords = new int[2];
         int bestX = getX();
@@ -216,6 +266,9 @@ public abstract class Animal implements Movable, Putable {
         return coords;
     }
 
+    /**Metoda zwracajaca tablice wszystkich mozliwych ruchow i odleglosci do celu od tych pol
+     * @return
+     */
     private double[][] initDistanceTab() {
         int tabLen = (getSpeed() * 2) + 1;
         double[][] tab = new double[tabLen][tabLen];
@@ -251,6 +304,7 @@ public abstract class Animal implements Movable, Putable {
     public boolean isAlive() {
         return getHealth() > 0;
     }
+
 
     @Override
     public boolean equals(Object o) {
