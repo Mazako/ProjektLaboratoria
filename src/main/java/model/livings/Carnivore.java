@@ -2,14 +2,9 @@ package model.livings;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Stream;
 
 public abstract class Carnivore extends Animal {
 
-    /**
-     *
-     */
-    private static final int COOLDOWN_VALUE = 8;
 
     /** czas odnowienia miesozercy
      *
@@ -24,12 +19,11 @@ public abstract class Carnivore extends Animal {
      * @param x wspolrzedna 'x' miesozercy
      * @param y wspolrzedna 'y' miesozercy
      * @param health zdrowie miesozercy
-     * @param hunger glod miesozercy
      * @param speed predkosc miesozercy
      * @param attackValue wartosc ataku miesozercy
      */
-    public Carnivore(int x, int y, int health, int hunger, int speed, int attackValue) {
-        super(x, y, health, hunger, speed);
+    public Carnivore(int x, int y, int health, int speed, int attackValue) {
+        super(x, y, health, speed);
         this.attackValue = attackValue;
         this.cooldown = 10;
     }
@@ -52,9 +46,9 @@ public abstract class Carnivore extends Animal {
     /** Metoda atakujaca inne zwierze
      * @param animal zwierze
      */
-    public  void attack(Animal animal) {
+    public  void attack(Animal animal, int cooldown) {
         animal.setHealth(animal.getHealth() - getAttackValue());
-        startCooldown();
+        startCooldown(cooldown);
     }
 
     @Override
@@ -78,8 +72,8 @@ public abstract class Carnivore extends Animal {
     /** Metoda tworzaca czas odnowienia
      *
      */
-    public void startCooldown() {
-        cooldown = COOLDOWN_VALUE;
+    public void startCooldown(int cooldown) {
+        this.cooldown = cooldown;
     }
 
     /** Metoda zmniejszajaca czas odnowienia

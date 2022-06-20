@@ -7,12 +7,11 @@ public class Lion extends Carnivore {
      * @param x wspolrzedna 'x' lwa
      * @param y wspolrzedna 'y' lwa
      * @param health zdrowie lwa
-     * @param hunger glod lwa
      * @param speed predkosc lwa
      * @param attackValue wartosc ataku lwa
      */
-    public Lion(int x, int y, int health, int hunger, int speed, int attackValue) {
-        super(x, y, health, hunger, speed, attackValue);
+    public Lion(int x, int y, int health, int speed, int attackValue) {
+        super(x, y, health, speed, attackValue);
     }
 
 

@@ -65,6 +65,8 @@ public class Initializator {
      */
     private int zebraSpeed = 3;
 
+    private int HungerPerTick;
+
     //roślina
 
     /** Minimalna wartosc leczenia
@@ -116,6 +118,9 @@ public class Initializator {
      *
      */
     private int plants = 10;
+
+    private boolean showDistances;
+    private int AttackCooldown;
 
 
     /** getter na zdrowie lwa
@@ -286,12 +291,6 @@ public class Initializator {
         this.zebraHealth = zebraHealth;
     }
 
-    /** getter na glod zebry
-     * @return
-     */
-    public int getZebraHunger() {
-        return zebraHunger;
-    }
 
     /** setter na glod zebry
      * @param zebraHunger
@@ -466,5 +465,29 @@ public class Initializator {
      */
     public void setTicksPerPlantSpawn(int ticksPerPlantSpawn) {
         this.ticksPerPlantSpawn = ticksPerPlantSpawn;
+    }
+
+    public int getHungerPerTick() {
+        return  HungerPerTick;
+    }
+
+    public boolean isShowDistances() {
+        return showDistances;
+    }
+
+    public int getAttackCooldown() {
+        return  AttackCooldown;
+    }
+
+    public void setHungerPerTick(int hungerPerTick) {
+        HungerPerTick = hungerPerTick;
+    }
+
+    public void setShowDistances(boolean showDistances) {
+        this.showDistances = showDistances;
+    }
+
+    public void setAttackCooldown(int attackCooldown) {
+        AttackCooldown = attackCooldown;
     }
 }

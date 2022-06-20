@@ -12,11 +12,10 @@ public abstract class Herbivore extends Animal {
      * @param x wspolrzedna 'x' roslinozercy
      * @param y wspolrzedna 'y' roslinozercy
      * @param health zdrowie roslinozercy
-     * @param hunger glod roslinozercy
      * @param speed predkosc roslinozercy
      */
-    public Herbivore(int x, int y, int health, int hunger, int speed) {
-        super(x, y, health, hunger, speed);
+    public Herbivore(int x, int y, int health, int speed) {
+        super(x, y, health, speed);
     }
 
 

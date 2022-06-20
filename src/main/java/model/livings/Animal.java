@@ -38,14 +38,12 @@ public abstract class Animal implements Movable, Putable {
      * @param x wspolrzedna 'x' zwierzaka
      * @param y wspolrzedna 'y' zwierzaka
      * @param health zdrowie zwierzaka
-     * @param hunger glod zwierzaka
      * @param speed szybkosc zwierzaka
      */
-    public Animal(int x, int y, int health, int hunger, int speed) {
+    public Animal(int x, int y, int health, int speed) {
         this.x = x;
         this.y = y;
         this.health = health;
-        this.hunger = hunger;
         this.speed = speed;
         maxHp = health;
     }
