@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -17,13 +18,25 @@ import java.io.IOException;
 public class optionsController {
 
     @FXML
+    private CheckBox showDistancesCheckBox;
+    @FXML
+    private TextField attackCooldownLabel;
+
+    @FXML
+    private TextField hungerPerTickLabel;
+
+    @FXML
+    private TextField plantsPerTickLabel;
+
+    @FXML
+    private TextField plantsCooldownLabel;
+
+    @FXML
     private TextField giraffeCountValue;
 
     @FXML
     private TextField giraffeHpValue;
 
-    @FXML
-    private TextField giraffeHungerValue;
 
     @FXML
     private TextField giraffeSpeedValue;
@@ -37,8 +50,6 @@ public class optionsController {
     @FXML
     private TextField lionHpValue;
 
-    @FXML
-    private TextField lionHungerValue;
 
     @FXML
     private TextField lionSpeedValue;
@@ -48,11 +59,6 @@ public class optionsController {
 
     @FXML
     private TextField plantMaxHpValue;
-
-    @FXML
-    private TextField plantMaxHungerValue;
-    @FXML
-    private TextField plantMinHungerValue;
 
     @FXML
     private TextField plantMinHpValue;
@@ -66,8 +72,6 @@ public class optionsController {
     @FXML
     private TextField snakeHpValue;
 
-    @FXML
-    private TextField snakeHungerValue;
 
     @FXML
     private TextField snakeSpeedValue;
@@ -80,9 +84,6 @@ public class optionsController {
 
     @FXML
     private TextField zebraHpValue;
-
-    @FXML
-    private TextField zebraHungerValue;
 
     @FXML
     private TextField zebraSpeedValue;
@@ -115,32 +116,35 @@ public class optionsController {
 
     private void saveValues(Initializator init) {
         init.setLionHealth(Integer.parseInt(lionHpValue.getText()));
-        init.setLionHunger(Integer.parseInt(lionHungerValue.getText()));
         init.setLionSpeed(Integer.parseInt(lionSpeedValue.getText()));
         init.setLionAttackValue(Integer.parseInt(lionAttackValue.getText()));
         init.setLions(Integer.parseInt(lionCountValue.getText()));
 
         init.setSnakeHealth(Integer.parseInt(snakeHpValue.getText()));
-        init.setSnakeHunger(Integer.parseInt(snakeHungerValue.getText()));
         init.setSnakeSpeed(Integer.parseInt(snakeSpeedValue.getText()));
         init.setSnakeAttackValue(Integer.parseInt(snakeAttackValue.getText()));
         init.setSnakes(Integer.parseInt(snakeCountValue.getText()));
 
         init.setGiraffeHealth(Integer.parseInt(giraffeHpValue.getText()));
-        init.setGiraffeHunger(Integer.parseInt(giraffeHungerValue.getText()));
         init.setGiraffeSpeed(Integer.parseInt(giraffeSpeedValue.getText()));
         init.setGiraffes(Integer.parseInt(giraffeCountValue.getText()));
 
         init.setZebraHealth(Integer.parseInt(zebraHpValue.getText()));
-        init.setZebraHunger(Integer.parseInt(zebraHungerValue.getText()));
         init.setZebraSpeed(Integer.parseInt(zebraSpeedValue.getText()));
         init.setZebras(Integer.parseInt(zebraCountValue.getText()));
 
         init.setHealValueMin(Integer.parseInt(plantMinHpValue.getText()));
         init.setHealValueMax(Integer.parseInt(plantMaxHpValue.getText()));
-        init.setHungerValueMin(Integer.parseInt(plantMinHungerValue.getText()));
-        init.setHungerValueMax(Integer.parseInt(plantMaxHungerValue.getText()));
         init.setPlants(Integer.parseInt(plantCountValue.getText()));
+
+        init.setPlantsPerTick(Integer.parseInt(plantsPerTickLabel.getText()));
+        init.setTicksPerPlantSpawn(Integer.parseInt(plantsCooldownLabel.getText()));
+        init.setAttackCooldown(Integer.parseInt(attackCooldownLabel.getText()));
+        init.setHungerPerTick(Integer.parseInt(hungerPerTickLabel.getText()));
+
+        init.setShowDistances(showDistancesCheckBox.isSelected());
+
+
     }
 
 }
