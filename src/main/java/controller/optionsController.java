@@ -17,78 +17,150 @@ import java.io.IOException;
 
 public class optionsController {
 
+    /**
+     *
+     */
     @FXML
     private CheckBox showDistancesCheckBox;
+    /**
+     *
+     */
     @FXML
     private TextField attackCooldownLabel;
 
+    /**
+     *
+     */
     @FXML
     private TextField hungerPerTickLabel;
 
+    /**
+     *
+     */
     @FXML
     private TextField plantsPerTickLabel;
 
+    /**
+     *
+     */
     @FXML
     private TextField plantsCooldownLabel;
 
+    /**
+     *
+     */
     @FXML
     private TextField giraffeCountValue;
 
+    /**
+     * Wartosc zdrowia zyrafy
+     */
     @FXML
     private TextField giraffeHpValue;
 
 
+    /**
+     * Wartosc predkosci zyrafy
+     */
     @FXML
     private TextField giraffeSpeedValue;
 
+    /**
+     * wartosc ataku lwa
+     */
     @FXML
     private TextField lionAttackValue;
 
+    /**
+     *
+     */
     @FXML
     private TextField lionCountValue;
 
+    /**
+     * wartosc zdrowia lwa
+     */
     @FXML
     private TextField lionHpValue;
 
 
+    /**
+     * wartosc predkosci lwa
+     */
     @FXML
     private TextField lionSpeedValue;
 
+    /**
+     *
+     */
     @FXML
     private TextField plantCountValue;
 
+    /**
+     * wartosc maksymalnego zdrowia rosliny
+     */
     @FXML
     private TextField plantMaxHpValue;
 
+    /**
+     * wartosc minimalnego zdrowia
+     */
     @FXML
     private TextField plantMinHpValue;
 
+    /**
+     * wartosc ataku weza
+     */
     @FXML
     private TextField snakeAttackValue;
 
+    /**
+     *
+     */
     @FXML
     private TextField snakeCountValue;
 
+    /**
+     * wartosc zdrowia weza
+     */
     @FXML
     private TextField snakeHpValue;
 
 
+    /**
+     * wartosc predkosci weza
+     */
     @FXML
     private TextField snakeSpeedValue;
 
+    /**
+     *Przycisk startujacy
+     */
     @FXML
     private Button startingButton;
 
+    /**
+     *
+     */
     @FXML
     private TextField zebraCountValue;
 
+    /**
+     * wartosc zdrowia zebry
+     */
     @FXML
     private TextField zebraHpValue;
 
+    /**
+     * wartosc predkosci zebry
+     */
     @FXML
     private TextField zebraSpeedValue;
 
 
+    /**
+     * Metoda inicjalizacji
+     */
     public void initialize() {
         Initializator init = new Initializator();
         startingButton.addEventFilter(ActionEvent.ACTION,event -> {
@@ -98,6 +170,10 @@ public class optionsController {
         });
     }
 
+    /** Metoda otworzenia okna aplikacji
+     * @param init inicjalizator
+     * @param event event
+     */
     private void openNewWindow(Initializator init, ActionEvent event) {
         try {
             simulationWindowController.setInitializator(init);

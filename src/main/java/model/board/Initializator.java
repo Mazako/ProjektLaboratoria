@@ -65,6 +65,9 @@ public class Initializator {
      */
     private int zebraSpeed = 3;
 
+    /** Zdrowie na jeden tik
+     *
+     */
     private int HungerPerTick;
 
     //roślina
@@ -119,7 +122,13 @@ public class Initializator {
      */
     private int plants = 10;
 
+    /** Pokazuje odleglosc
+     *
+     */
     private boolean showDistances;
+    /** Czas odnowienia ataku
+     *
+     */
     private int AttackCooldown;
 
 
@@ -131,7 +140,7 @@ public class Initializator {
     }
 
     /** setter na zdrowie lwa
-     * @param lionHealth
+     * @param lionHealth zdrowie lwa
      */
     public void setLionHealth(int lionHealth) {
         this.lionHealth = lionHealth;
@@ -145,7 +154,7 @@ public class Initializator {
     }
 
     /** setter na glod lwa
-     * @param lionHunger
+     * @param lionHunger glod lwa
      */
     public void setLionHunger(int lionHunger) {
         this.lionHunger = lionHunger;
@@ -159,7 +168,7 @@ public class Initializator {
     }
 
     /** setter na predkosc lwa
-     * @param lionSpeed
+     * @param lionSpeed predkosc lwa
      */
     public void setLionSpeed(int lionSpeed) {
         this.lionSpeed = lionSpeed;
@@ -173,7 +182,7 @@ public class Initializator {
     }
 
     /** setter na wartosc ataku lwa
-     * @param lionAttackValue
+     * @param lionAttackValue wartosc ataku lwa
      */
     public void setLionAttackValue(int lionAttackValue) {
         this.lionAttackValue = lionAttackValue;
@@ -187,7 +196,7 @@ public class Initializator {
     }
 
     /** setter na zdrowie zyrafy
-     * @param giraffeHealth
+     * @param giraffeHealth zdrowie zyrafy
      */
     public void setGiraffeHealth(int giraffeHealth) {
         this.giraffeHealth = giraffeHealth;
@@ -201,7 +210,7 @@ public class Initializator {
     }
 
     /** setter na zdrowie zyrafy
-     * @param giraffeHunger
+     * @param giraffeHunger glod zyrafy
      */
     public void setGiraffeHunger(int giraffeHunger) {
         this.giraffeHunger = giraffeHunger;
@@ -215,7 +224,7 @@ public class Initializator {
     }
 
     /** setter na predkosc zyrafy
-     * @param giraffeSpeed
+     * @param giraffeSpeed predkosc zyrafy
      */
     public void setGiraffeSpeed(int giraffeSpeed) {
         this.giraffeSpeed = giraffeSpeed;
@@ -229,7 +238,7 @@ public class Initializator {
     }
 
     /** setter na zdrowie weza
-     * @param snakeHealth
+     * @param snakeHealth zdrowie weza
      */
     public void setSnakeHealth(int snakeHealth) {
         this.snakeHealth = snakeHealth;
@@ -243,7 +252,7 @@ public class Initializator {
     }
 
     /** setter na glod weza
-     * @param snakeHunger
+     * @param snakeHunger glod weza
      */
     public void setSnakeHunger(int snakeHunger) {
         this.snakeHunger = snakeHunger;
@@ -271,7 +280,7 @@ public class Initializator {
     }
 
     /** setter na wartosc ataku weza
-     * @param snakeAttackValue
+     * @param snakeAttackValue wartosc ataku weza
      */
     public void setSnakeAttackValue(int snakeAttackValue) {
         this.snakeAttackValue = snakeAttackValue;
@@ -285,7 +294,7 @@ public class Initializator {
     }
 
     /** setter na zdrowie zebry
-     * @param zebraHealth
+     * @param zebraHealth zdrowie zebry
      */
     public void setZebraHealth(int zebraHealth) {
         this.zebraHealth = zebraHealth;
@@ -293,7 +302,7 @@ public class Initializator {
 
 
     /** setter na glod zebry
-     * @param zebraHunger
+     * @param zebraHunger glod zebry
      */
     public void setZebraHunger(int zebraHunger) {
         this.zebraHunger = zebraHunger;
@@ -307,7 +316,7 @@ public class Initializator {
     }
 
     /** setter na predkosc zebry
-     * @param zebraSpeed
+     * @param zebraSpeed predkosc zebry
      */
     public void setZebraSpeed(int zebraSpeed) {
         this.zebraSpeed = zebraSpeed;
@@ -321,7 +330,7 @@ public class Initializator {
     }
 
     /** setter na leczenie minimalne
-     * @param healValueMin
+     * @param healValueMin minimalne leczenie
      */
     public void setHealValueMin(int healValueMin) {
         this.healValueMin = healValueMin;
@@ -335,7 +344,7 @@ public class Initializator {
     }
 
     /** setter na leczenie maksymalne
-     * @param healValueMax
+     * @param healValueMax maksymalne leczenie
      */
     public void setHealValueMax(int healValueMax) {
         this.healValueMax = healValueMax;
@@ -349,7 +358,7 @@ public class Initializator {
     }
 
     /** setter na glod minimalny
-     * @param hungerValueMin
+     * @param hungerValueMin minimalny glod
      */
     public void setHungerValueMin(int hungerValueMin) {
         this.hungerValueMin = hungerValueMin;
@@ -363,7 +372,7 @@ public class Initializator {
     }
 
     /** setter na glod maksymalny
-     * @param hungerValueMax
+     * @param hungerValueMax maksymalny glod
      */
     public void setHungerValueMax(int hungerValueMax) {
         this.hungerValueMax = hungerValueMax;
@@ -377,7 +386,7 @@ public class Initializator {
     }
 
     /** setter na ilosc lwow
-     * @param lions
+     * @param lions lwy
      */
     public void setLions(int lions) {
         this.lions = lions;
@@ -391,7 +400,7 @@ public class Initializator {
     }
 
     /** setter na ilosc wezy
-     * @param snakes
+     * @param snakes weze
      */
     public void setSnakes(int snakes) {
         this.snakes = snakes;
@@ -405,7 +414,7 @@ public class Initializator {
     }
 
     /** setter na ilosc zebr
-     * @param zebras
+     * @param zebras zebry
      */
     public void setZebras(int zebras) {
         this.zebras = zebras;
@@ -419,7 +428,7 @@ public class Initializator {
     }
 
     /** setter na ilosc zyraf
-     * @param giraffes
+     * @param giraffes zyrafy
      */
     public void setGiraffes(int giraffes) {
         this.giraffes = giraffes;
@@ -433,7 +442,7 @@ public class Initializator {
     }
 
     /** setter na ilosc roslin
-     * @param plants
+     * @param plants rosliny
      */
     public void setPlants(int plants) {
         this.plants = plants;
@@ -447,46 +456,64 @@ public class Initializator {
     }
 
     /** setter na ilosc tikow co ile ma byc spawniona roslina
-     * @param plantsPerTick
+     * @param plantsPerTick roslin na tik
      */
     public void setPlantsPerTick(int plantsPerTick) {
         this.plantsPerTick = plantsPerTick;
     }
 
-    /** getter
+    /** getter na ilosc tikow na rosline
      * @return
      */
     public int getTicksPerPlantSpawn() {
         return ticksPerPlantSpawn;
     }
 
-    /**
+    /** setter na ilosc tikow na rosline
      * @param ticksPerPlantSpawn
      */
     public void setTicksPerPlantSpawn(int ticksPerPlantSpawn) {
         this.ticksPerPlantSpawn = ticksPerPlantSpawn;
     }
 
+    /** getter na glod
+     * @return
+     */
     public int getHungerPerTick() {
         return  HungerPerTick;
     }
 
+    /** Czy jest w odpowiedniej odleglosci
+     * @return
+     */
     public boolean isShowDistances() {
         return showDistances;
     }
 
+    /** getter na czas odnowienia ataku
+     * @return
+     */
     public int getAttackCooldown() {
         return  AttackCooldown;
     }
 
+    /** setter na glod
+     * @param hungerPerTick
+     */
     public void setHungerPerTick(int hungerPerTick) {
         HungerPerTick = hungerPerTick;
     }
 
+    /** setter na to czy jest w odpowiedniej odleglosci
+     * @param showDistances
+     */
     public void setShowDistances(boolean showDistances) {
         this.showDistances = showDistances;
     }
 
+    /** setter na czas odnowienia ataku
+     * @param attackCooldown
+     */
     public void setAttackCooldown(int attackCooldown) {
         AttackCooldown = attackCooldown;
     }

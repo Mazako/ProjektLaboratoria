@@ -5,6 +5,9 @@ import model.board.Safari;
 import java.util.ArrayList;
 import java.util.List;
 
+/** Interfejs odpowiadajacy za ruch obiektow
+ *
+ */
 public interface Movable {
 
      void move(int x, int y);

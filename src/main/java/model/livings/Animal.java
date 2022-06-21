@@ -8,28 +8,60 @@ import java.util.Objects;
 import java.util.Random;
 
 
-/**
- *ggdsgs
+/**Klasa reprezentujaca zwierze
  *
  */
 public abstract class Animal implements Movable, Putable {
 
+    /** Losowosc
+     *
+     */
     private static final Random random = new Random();
 
+    /** Zasieg obiektu
+     *
+     */
     public static int TARGET_RANGE = (simulationWindowController.RADIUS);
 
+    /**
+     *wspolrzedna 'x'
+     */
     private int x;
+    /**
+     *wspolrzedna 'y'
+     */
     private int y;
+    /**
+     *zycie
+     */
     private int health;
+    /**
+     *glod
+     */
     private int hunger;
+    /**
+     *predkosc
+     */
     private int speed;
 
+    /**
+     *Kierunek X
+     */
     private LeftRightDirection leftRightDirection;
 
+    /**
+     *Kierunek Y
+     */
     private UpDownDirection upDownDirection;
 
+    /**
+     *obiekt
+     */
     private Putable Target;
 
+    /**
+     * maksymalna ilosc zdrowia
+     */
     private final int maxHp;
 
 
@@ -56,7 +88,7 @@ public abstract class Animal implements Movable, Putable {
     }
 
     /** metoda ustawia aktualne zdrowie zwierzecia
-     * @param health
+     * @param health zdrowie
      */
     public void setHealth(int health) {
         this.health = health;
@@ -70,7 +102,7 @@ public abstract class Animal implements Movable, Putable {
     }
 
     /** Metoda ustawia aktualna szybkosc zwierzecia
-     * @param speed
+     * @param speed predkosc
      */
     public void setSpeed(int speed) {
         this.speed = speed;
@@ -84,7 +116,7 @@ public abstract class Animal implements Movable, Putable {
     }
 
     /** Metoda ustawia aktualne zdrowie zwierzecia
-     * @param hunger
+     * @param hunger glod
      */
     public void setHunger(int hunger) {
         this.hunger = hunger;
@@ -173,11 +205,17 @@ public abstract class Animal implements Movable, Putable {
 
     }
 
+    /** Wyswietla wspolrzedne
+     * @return
+     */
     @Override
     public String toString() {
         return getX() + " " + getY();
     }
 
+    /**
+     * Losowe poruszanie sie
+     */
     @Override
     public void randomMove() {
         int position = getSpeed();
@@ -208,7 +246,7 @@ public abstract class Animal implements Movable, Putable {
     }
 
     /** Metoda losowo zmienia położenie naszego zwierzaka w kierunku 'X'
-     * @param position
+     * @param position dodatkowa wspolrzedna x
      */
     private void XRandomMove(int position) {
         switch (leftRightDirection) {
@@ -242,7 +280,7 @@ public abstract class Animal implements Movable, Putable {
     }
 
     /**Metoda szukajaca najlepszych wspolrzednych, aby poruszyc sie do celu o krok
-     * @param distanceTab
+     * @param distanceTab dystans
      * @return
      */
     private int[] findBestCoords(double[][] distanceTab) {
@@ -283,6 +321,9 @@ public abstract class Animal implements Movable, Putable {
 
     }
 
+    /** Czy obiekt jest w zasiegu
+     * @return
+     */
     @Override
     public boolean isInRangeOfTarget() {
         for (int i = -TARGET_RANGE; i <= TARGET_RANGE; i++) {
@@ -295,10 +336,16 @@ public abstract class Animal implements Movable, Putable {
         return false;
     }
 
+    /** getter na maksymalne zdrowie
+     * @return
+     */
     public int getMaxHp() {
         return maxHp;
     }
 
+    /** Czy zwierze zyje
+     * @return
+     */
     public boolean isAlive() {
         return getHealth() > 0;
     }

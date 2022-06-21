@@ -12,20 +12,53 @@ import java.util.stream.Collectors;
 
 public class Safari {
 
+    /** Losowosc
+     *
+     */
     private static Random random = new Random();
 
+    /** Czy zrobione
+     *
+     */
     private boolean done = false;
+    /** Maksymalna szerokosc
+     *
+     */
     public static int MAX_WIDTH = 800;
+    /** Maksymalna wysokosc
+     *
+     */
     public static int MAX_HEIGHT = 800;
+    /** Lista skladajaca sie z obiektow
+     *
+     */
     private ArrayList<Putable> objects;
 
+    /** ilosc tikow
+     *
+     */
     private int tick;
 
+    /** Tiki do zrespienia sie obiektu
+     *
+     */
     private int ticksCountToSpawnPlant;
+    /** Ilosc roslin zrespionych przez sekunde
+     *
+     */
     private int plantsSpawnPerTick;
+    /** Glod na sekunde
+     *
+     */
     private int hungerPerTickValue;
 
+    /** Czas odnowienia ataku
+     *
+     */
     private int attackCooldown;
+    /** Inicjalizator
+     *
+     */
     private Initializator init;
 
     public Safari(Initializator initializator) {
@@ -47,6 +80,9 @@ public class Safari {
         tick = 0;
     }
 
+    /** Metoda ustawiajaca losowe kierunki
+     *
+     */
     private void setRandomDirections() {
         for (Putable object : objects) {
             if (object instanceof Movable) {
@@ -56,6 +92,10 @@ public class Safari {
         }
     }
 
+    /** Inicjalizacja roslin
+     * @param objects obiekty
+     * @param initializator inicjalizator
+     */
     private void initializePlants(ArrayList<Putable> objects, Initializator initializator) {
         for (int i = 0; i < initializator.getPlants(); i++) {
             int x = getRandomX();
@@ -66,6 +106,10 @@ public class Safari {
         }
     }
 
+    /** Inicjalizacja zyraf
+     * @param objects obiekty
+     * @param initializator inicjalizator
+     */
     private void initializeGiraffes(ArrayList<Putable> objects, Initializator initializator) {
         for (int i = 0; i < initializator.getGiraffes(); i++) {
             int x = getRandomX();
@@ -76,6 +120,10 @@ public class Safari {
         }
     }
 
+    /** Inicjalizacja wezy
+     * @param objects obiekty
+     * @param initializator inicjalizator
+     */
     private void initializeSnakes(ArrayList<Putable> objects, Initializator initializator) {
         for (int i = 0; i < initializator.getSnakes(); i++) {
             int x = getRandomX();
@@ -87,6 +135,10 @@ public class Safari {
         }
     }
 
+    /** Inicjalizacja zebr
+     * @param objects obiekty
+     * @param initializator inicjalizator
+     */
     private void initializeZebras(ArrayList<Putable> objects, Initializator initializator) {
         for (int i = 0; i < initializator.getZebras(); i++) {
             int x = getRandomX();
@@ -97,6 +149,10 @@ public class Safari {
         }
     }
 
+    /** Inicjalizacja lwow
+     * @param objects obiekty
+     * @param initializator inicjalizator
+     */
     private void initializeLions(ArrayList<Putable> objects, Initializator initializator) {
         for (int i = 0; i < initializator.getLions(); i++) {
             int x = getRandomX();
@@ -109,10 +165,16 @@ public class Safari {
         }
     }
 
+    /** getter na losowego X
+     * @return
+     */
     private int getRandomX() {
         return random.nextInt(MAX_WIDTH + 1);
     }
 
+    /** getter na losowego Y
+     * @return
+     */
     private int getRandomY() {
         return random.nextInt(MAX_HEIGHT + 1);
     }
@@ -122,92 +184,159 @@ public class Safari {
     }
 
 
+    /** Rozmiar miesozercy
+     * @return
+     */
     public int carnivoresSize() {
         return predicateSize(x -> x instanceof Carnivore);
     }
 
+    /** Rozmiar roslinozercy
+     * @return
+     */
     public int hebivoreSize() {
         return predicateSize(x -> x instanceof Herbivore);
     }
 
+    /** Rozmiar rosliny
+     * @return
+     */
     public int plantSize() {
         return predicateSize(x -> x instanceof Plant);
     }
 
+    /** Rozmiar zyrafy
+     * @return
+     */
     public int giraffeSize() {
         return predicateSize(x -> x instanceof Giraffe);
     }
 
+    /** Rozmiar weza
+     * @return
+     */
     public int snakeSize() {
         return predicateSize(x -> x instanceof Snake);
     }
 
+    /** Rozmiar lwa
+     * @return
+     */
     public int lionSize() {
         return predicateSize(x -> x instanceof Lion);
     }
 
+    /** Rozmiar zebry
+     * @return
+     */
     public int zebraSize() {
         return predicateSize(x -> x instanceof Zebra);
     }
 
+    /** Maksymalny rozmiar
+     * @return
+     */
     public int fullSize() {
         return objects.size();
     }
 
+    /** Rozmiar zwierzecia
+     * @return
+     */
     public int animalSize() {
         return hebivoreSize() + carnivoresSize();
     }
 
+    /** Usuwanie obiektu
+     * @param p obiekt
+     */
     public void remove(Putable p) {
         objects.remove(p);
     }
 
+    /** Dodawanie obiektu
+     * @param p obiekt
+     */
     public void add(Putable p) {
         objects.add(p);
     }
 
+    /** Iterator obiektow
+     * @return
+     */
     public Iterator<Putable> getIterator() {
         return objects.iterator();
     }
 
+    /** Getter na tiki do zespawnienia rosliny
+     * @return
+     */
     public int getTicksCountToSpawnPlant() {
         return ticksCountToSpawnPlant;
     }
 
+    /** Setter na tiki do zespawnienia rosliny
+     * @param ticksCountToSpawnPlant
+     */
     public void setTicksCountToSpawnPlant(int ticksCountToSpawnPlant) {
         this.ticksCountToSpawnPlant = ticksCountToSpawnPlant;
     }
 
+    /** Getter na zespawnienie rosliny w czasie 1 sekundy
+     * @return
+     */
     public int getPlantsSpawnPerTick() {
         return plantsSpawnPerTick;
     }
 
+    /** Setter na zespawnienie rosliny w czasie 1 sekundy
+     * @param plantsSpawnPerTick
+     */
     public void setPlantsSpawnPerTick(int plantsSpawnPerTick) {
         this.plantsSpawnPerTick = plantsSpawnPerTick;
     }
 
+    /** pobranie ilosci glodu na tick
+     * @return
+     */
     public int getHungerPerTickValue() {
         return hungerPerTickValue;
     }
 
+    /** ustawienie ilosci glodu na tick
+     * @param hungerPerTickValue
+     */
     public void setHungerPerTickValue(int hungerPerTickValue) {
         this.hungerPerTickValue = hungerPerTickValue;
     }
 
+    /**pobranie ilosci tickow pozwalajacych na ponowny atak miesozercy
+     * @return
+     */
     public int getAttackCooldown() {
         return attackCooldown;
     }
 
+    /** ustawienie ilosci tickow pozwalajacych na ponowny atak miesozercy
+     * @param attackCooldown
+     */
     public void setAttackCooldown(int attackCooldown) {
         this.attackCooldown = attackCooldown;
     }
 
+    /** Metoda pomocnicza do obliczania rozmiarów poszczególnych obiektów na planszy
+     * @param predicate
+     * @return
+     */
     private int predicateSize(Predicate<Putable> predicate) {
         return (int) objects.stream()
                 .filter(predicate)
                 .count();
     }
 
+    /** Ustawianie obiektow
+     *
+     */
     public void setTargets() {
         for (Putable object : objects) {
             if (object instanceof Movable) {
@@ -216,15 +345,24 @@ public class Safari {
         }
     }
 
+    /** lista zwracajaca obiekty
+     * @return
+     */
     public ArrayList<Putable> getObjects() {
         return objects;
     }
 
+    /** getter na tik
+     * @return
+     */
     public int getTick() {
         return tick;
     }
 
 
+    /** Metoda na chodzenie
+     *
+     */
     public void step() {
         if (!done) {
             checkPlantSpawn();
@@ -277,6 +415,9 @@ public class Safari {
         }
         }
 
+    /** Metoda na usuwanie zwierzat
+     * @param p zwierze
+     */
     private void deleteAnimalTargets(Animal p) {
         for (Putable object : objects) {
             if (object instanceof Animal && ((Animal) object).hasTarget()) {
@@ -286,6 +427,9 @@ public class Safari {
         }
     }
 
+    /** Metoda sprawdzajaca spawn rosliny
+     *
+     */
     private void checkPlantSpawn() {
         if (tick % ticksCountToSpawnPlant == 0) {
             for (int i = 0; i < plantsSpawnPerTick; i++) {
@@ -297,6 +441,9 @@ public class Safari {
         }
     }
 
+    /** Poruszanie sie obiektu
+     * @param p obiekty
+     */
     private void targetMove(Putable p) {
         int prevX = p.getX();
         int prevY = p.getY();
@@ -317,6 +464,9 @@ public class Safari {
         }
     }
 
+    /** Usuwanie roslin
+     * @param plant rosliny
+     */
     private void deletePlantsTargets(Plant plant) {
             for (Putable object : objects) {
                 if (object instanceof Herbivore && ((Herbivore) object).hasTarget()) {
@@ -326,6 +476,11 @@ public class Safari {
             }
         }
 
+    /** Metoda sprawdzajaca czy ktos znajduje sie na tych samych wspolrzednch
+     * @param x wspolrzedna 'x'
+     * @param y wspolrzedna 'y'
+     * @return
+     */
         boolean isSomeoneHere(int x, int y) {
             long count = objects.stream()
                     .filter(o -> !(o instanceof Plant))
@@ -334,11 +489,17 @@ public class Safari {
             return count > 1;
         }
 
+    /** Metoda sprawdzajaca czy ilosc miesozercow i roslinozercow jest rowna 0
+     *
+     */
         private void checkDone() {
             if (carnivoresSize() == 0 || hebivoreSize() == 0)
                 done = true;
         }
 
+    /** Czy skonczone
+     * @return
+     */
     public boolean isDone() {
         return done;
     }

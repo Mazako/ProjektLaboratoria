@@ -13,10 +13,16 @@ import java.io.IOException;
 
 public class mainMenuController {
 
+    /**
+     * Przycisk startu
+     */
     @FXML
     private Button startButton;
 
 
+    /** Metoda inicjalizacji
+     *
+     */
     public void initialize() {
         startButton.addEventFilter(ActionEvent.ACTION, event -> {
             Stage stage = new Stage();

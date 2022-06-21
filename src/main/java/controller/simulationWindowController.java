@@ -26,55 +26,102 @@ import java.util.Random;
 
 public class simulationWindowController {
 
+    /**
+     * promień koła reprezentującego obiekt
+     */
     public static int RADIUS = 25;
 
 
-
+    /**Pole tekstowe do wpisywania nazwy pliku txt
+     *
+     */
     @FXML
     private TextField fileNameTextArea;
 
 
+    /**
+     * Przycisk do zapisania pliku tekstowego i wyjscia z symulacji
+     */
     @FXML
     private Button saveAndQuitButton;
+    /**
+     * Głowny panel planszy
+     */
     @FXML
     private AnchorPane boardAnchorPane;
 
+    /**
+     * pole pokazujące tekst "nazwa pliku"
+     */
     @FXML
     private Label fileNameLabel;
 
 
+    /**
+     * pole pokazujac ile jest zyraf na planszy
+     */
     @FXML
     private Label giraffeCountLabel;
 
+    /**
+     * pole pokazujac ile jest lwow na planszy
+     */
     @FXML
     private Label lionCountLabel;
 
+    /**
+     * pole pokazujac ile jest roslin na planszy
+     */
     @FXML
     private Label plantsCountLabel;
 
+    /**
+     * pole pokazujac ile jest wezow na planszy
+     */
     @FXML
     private Label snakeCountLabel;
 
+    /**
+     * pole pokazujac ile jest zeber na planszy
+     */
     @FXML
     private Label zebraCountLabel;
 
+    /**
+     * Canvas na którym dokonywanie jest rysowanie i wyświetlanie obiektów
+     */
     @FXML
     private Canvas boardCanvas;
 
+    /**
+     * pole pokazujące krok symulacji
+     */
     @FXML
     private Label stepLabel;
 
+    /**
+     * przycisk do zatrzymania symulacji
+     */
     @FXML
     private Button stopButton;
 
+    /**
+     * zmienna, która pokazuje, czy symulacja trwa czy nie
+     */
     private boolean program = true;
 
     private final Random random = new Random();
 
+    /**
+     * Inicjalizator
+     */
     @FXML
     private static Initializator initializator;
 
 
+    /**
+     * Metoda inicjalizacji
+     */
     public void initialize() {
         Log log = new Log();
         GraphicsContext gc = boardCanvas.getGraphicsContext2D();
@@ -99,12 +146,18 @@ public class simulationWindowController {
 
     }
 
+    /**metoda, która zapisuje dane do pliku tekstowego i wychodzi z programu
+     * @param log
+     */
     private void saveAndQuit(Log log) {
         String filename = fileNameTextArea.getText();
         log.saveFile(filename);
         Platform.exit();
     }
 
+    /**
+     * metoda pokazujaca koniec elementu
+     */
     private void showEndElements() {
         saveAndQuitButton.setVisible(true);
         fileNameTextArea.setVisible(true);
@@ -112,6 +165,9 @@ public class simulationWindowController {
         stepLabel.setText("KONIEC");
     }
 
+    /**metoda, która wyświetla aktualne ilości obiektów w symulacji
+     * @param safari
+     */
     private void setValues(Safari safari) {
         lionCountLabel.setText(Integer.toString(safari.lionSize()));
         snakeCountLabel.setText(Integer.toString(safari.snakeSize()));
@@ -122,6 +178,11 @@ public class simulationWindowController {
     }
 
 
+    /**metoda, która odpowiada za przeprowadzenie jednego kroku symulacji włącznie z narysowaniem obiektów na planszy
+     * @param safari
+     * @param gc
+     * @param log
+     */
     private void stepLoop(Safari safari, GraphicsContext gc, Log log) {
             gc.clearRect(0,0,Safari.MAX_WIDTH + 100 ,Safari.MAX_HEIGHT + 100);
             safari.step();
@@ -132,10 +193,18 @@ public class simulationWindowController {
             }
     }
 
+    /**metoda zapisz
+     * @param log
+     * @param safari
+     */
     private void saveToLog(Log log, Safari safari) {
         log.addMessage(safari.getTick(),safari.animalSize(),safari.carnivoresSize(),safari.hebivoreSize());
     }
 
+    /**metoda, która rysuje linie między obiektem a jego celem
+     * @param iterator
+     * @param gc
+     */
     private void drawDistances(Iterator<Putable> iterator, GraphicsContext gc) {
         while (iterator.hasNext()) {
             Putable p = iterator.next();
@@ -148,6 +217,10 @@ public class simulationWindowController {
         }
     }
 
+    /**metoda, która rysuje obiekt na koordynatach na których się znajduje
+     * @param iter
+     * @param gc
+     */
     private void draw(Iterator<Putable> iter, GraphicsContext gc) {
 
         while (iter.hasNext()) {
@@ -170,6 +243,10 @@ public class simulationWindowController {
 
     }
 
+    /**metoda, która rysuje pasek stanu zdrowia obiektów
+     * @param p
+     * @param gc
+     */
     private void drawHealth(Putable p, GraphicsContext gc) {
         if (p instanceof Animal) {
             int healthFullLength = 45;
@@ -181,6 +258,9 @@ public class simulationWindowController {
     }
 
 
+    /** setter na inicjalizator
+     * @param initializator
+     */
     public static void setInitializator(Initializator initializator) {
         simulationWindowController.initializator = initializator;
 

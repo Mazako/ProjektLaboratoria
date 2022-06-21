@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+/** Klasa reprezentujaca roslinozercow
+ *
+ */
 public abstract class Herbivore extends Animal {
 
 
@@ -37,6 +40,9 @@ public abstract class Herbivore extends Animal {
         return (Plant) super.getTarget();
     }
 
+    /** Metoda, dzieki ktorej zwierzeta jedza inne zwierzeta
+     * @param target obiekt
+     */
     public void eat(Plant target) {
         setHealth(Math.min(target.getHealValue() + getHealth(), getMaxHp()));
         target.die();

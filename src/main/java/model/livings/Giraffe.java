@@ -1,5 +1,8 @@
 package model.livings;
 
+/** Klasa reprezentujaca zyrafy
+ *
+ */
 public class Giraffe extends Herbivore{
 
     /** Konstruktor przyjmujacy parametry zyrafy

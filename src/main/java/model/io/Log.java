@@ -15,10 +15,19 @@ public class Log {
 
     }
 
+    /** Metoda dodajaca wiadomosc
+     * @param tick tik
+     * @param allLivings wszystkich zyjacych zwierzat
+     * @param carnivores miesozercy
+     * @param herbivores roslinozercy
+     */
     public void addMessage(int tick, int allLivings, int carnivores, int herbivores) {
         logBuilder.append(tick + ";" + allLivings + ";" + carnivores + ";" + herbivores  + "\n");
     }
 
+    /** Metoda zapisujaca pliki
+     * @param filename nazwa pliku
+     */
     public void saveFile(String filename) {
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(filename + ".csv"))) {
             writer.write(logBuilder.toString());
@@ -27,6 +36,9 @@ public class Log {
         } ;
     }
 
+    /** Wiadomosc poczatkowa
+     *
+     */
     private void appendStartMessage() {
         logBuilder.append("tick;wszystkich;roslinozercy;miesozercy").append("\n");
     }

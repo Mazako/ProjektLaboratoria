@@ -3,6 +3,9 @@ package model.livings;
 import java.util.Comparator;
 import java.util.List;
 
+/** Klasa reprezentujaca miesozerce
+ *
+ */
 public abstract class Carnivore extends Animal {
 
 
@@ -36,7 +39,7 @@ public abstract class Carnivore extends Animal {
     }
 
     /** setter na wartosc ataku
-     * @param attackValue
+     * @param attackValue wartosc ataku
      */
     public void setAttackValue(int attackValue) {
         this.attackValue = attackValue;

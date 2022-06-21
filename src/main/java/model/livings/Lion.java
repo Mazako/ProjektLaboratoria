@@ -1,5 +1,8 @@
 package model.livings;
 
+/**Klasa reprezentujaca lwy
+ *
+ */
 public class Lion extends Carnivore {
 
 
