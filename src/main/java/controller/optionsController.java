@@ -15,6 +15,9 @@ import view.App;
 
 import java.io.IOException;
 
+/** Kontroler do okna opcji
+ *
+ */
 public class optionsController {
 
     /**
