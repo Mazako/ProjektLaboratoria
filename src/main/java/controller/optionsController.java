@@ -18,7 +18,7 @@ import java.io.IOException;
 public class optionsController {
 
     /**
-     *
+     *checkbox na pokazywanie dystansu
      */
     @FXML
     private CheckBox showDistancesCheckBox;
@@ -35,7 +35,7 @@ public class optionsController {
     private TextField hungerPerTickLabel;
 
     /**
-     *
+     *ilosc roslin na jeden tick
      */
     @FXML
     private TextField plantsPerTickLabel;
@@ -47,7 +47,7 @@ public class optionsController {
     private TextField plantsCooldownLabel;
 
     /**
-     *
+     *pole tekstowe na wpisanie ilosci zyraf
      */
     @FXML
     private TextField giraffeCountValue;
@@ -72,7 +72,7 @@ public class optionsController {
     private TextField lionAttackValue;
 
     /**
-     *
+     *pole tekstowe na wpisanie ilosci lwa
      */
     @FXML
     private TextField lionCountValue;
@@ -91,7 +91,7 @@ public class optionsController {
     private TextField lionSpeedValue;
 
     /**
-     *
+     *pole tekstowe na wpisywanie ilosci roslin
      */
     @FXML
     private TextField plantCountValue;
@@ -115,7 +115,7 @@ public class optionsController {
     private TextField snakeAttackValue;
 
     /**
-     *
+     *pole tekstowe na wpisanie ilosci wezy
      */
     @FXML
     private TextField snakeCountValue;
@@ -140,7 +140,7 @@ public class optionsController {
     private Button startingButton;
 
     /**
-     *
+     *pole tekstowe na wpisanie ilosci zebr
      */
     @FXML
     private TextField zebraCountValue;
@@ -190,6 +190,9 @@ public class optionsController {
         }
     }
 
+    /** metoda przekazujaca wartosci do obiektu inicjalizator
+     * @param init inicjalizator
+     */
     private void saveValues(Initializator init) {
         init.setLionHealth(Integer.parseInt(lionHpValue.getText()));
         init.setLionSpeed(Integer.parseInt(lionSpeedValue.getText()));
