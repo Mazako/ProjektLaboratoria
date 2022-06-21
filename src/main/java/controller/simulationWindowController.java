@@ -24,6 +24,9 @@ import model.livings.*;
 import java.util.Iterator;
 import java.util.Random;
 
+/** Kontroler do okna Symulacji
+ *
+ */
 public class simulationWindowController {
 
     /**

@@ -11,6 +11,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+
+/** Kontroler do okna menu głównego
+ *
+ */
 public class mainMenuController {
 
     /**
